@@ -5,7 +5,7 @@ export default {
 
     // Redirect Brazilian visitors to the BR landing page
     if ((url.pathname === '/' || url.pathname === '/index.html') && country === 'BR') {
-      return Response.redirect(new URL('/Landing%20Page%20BR.html', url.origin), 302);
+      return Response.redirect(new URL('/landing-br.html', url.origin), 302);
     }
 
     // Serve static assets normally

@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vortaris — Inteligência Global de Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --bg: #ffffff;
+  --bg-soft: #f6f6f7;
+  --bg-soft-2: #f0f0f2;
+  --ink: #0a0a0b;
+  --ink-2: #52525b;
+  --ink-3: #9a9aa2;
+  --line: #ececee;
+  --line-2: #e2e2e5;
+  --card: #ffffff;
+  --accent: #2f6bf6;
+  --on-ink: #ffffff;
+  --invert-bg: #0a0a0b;
+  --invert-fg: #ffffff;
+
+  --c-blue:#3b82f6; --c-orange:#f59e0b; --c-green:#22c55e;
+  --c-pink:#ec4899; --c-purple:#8b5cf6; --c-red:#ef4444; --c-teal:#14b8a6;
+
+  --maxw: 1180px;
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  line-height:1.5;
+  letter-spacing:-0.011em;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+/* ---------- type helpers ---------- */
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--ink-2);
+}
+.mono-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  font-weight:500;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+}
+h1,h2,h3{letter-spacing:-0.03em;line-height:1.04;font-weight:600;}
+h2{font-size:clamp(30px,4.4vw,52px);}
+.lead{font-size:clamp(17px,1.5vw,20px);color:var(--ink-2);line-height:1.55;letter-spacing:-0.01em;}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:15px;font-weight:550;
+  padding:12px 20px;border-radius:11px;border:1px solid transparent;
+  cursor:pointer;transition:transform .15s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--ink);color:var(--on-ink);}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 28px -10px rgba(0,0,0,.5);}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2);}
+.btn-ghost:hover{background:var(--bg-soft);border-color:var(--ink-3);}
+.btn-lg{padding:15px 26px;font-size:16px;border-radius:13px;}
+
+/* ---------- nav ---------- */
+header.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter:saturate(180%) blur(18px);
+  -webkit-backdrop-filter:saturate(180%) blur(18px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, background .3s ease;
+}
+header.nav.scrolled{border-bottom-color:var(--line);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:66px;}
+.brand{display:flex;align-items:center;gap:10px;}
+.logo-mark{
+  width:30px;height:30px;border-radius:8px;background:var(--ink);color:var(--on-ink);
+  display:grid;place-items:center;font-weight:700;font-size:16px;letter-spacing:-0.04em;
+}
+.brand-text{display:flex;flex-direction:column;line-height:1;}
+.brand-name{font-weight:650;font-size:15.5px;letter-spacing:-0.02em;}
+.brand-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:0.22em;color:var(--ink-3);margin-top:3px;}
+header.nav .nav-inner{height:76px;}
+header.nav .logo-mark{width:40px;height:40px;border-radius:10px;font-size:21px;}
+header.nav .brand-name{font-size:18px;}
+header.nav .brand-sub{font-size:9.5px;letter-spacing:0.2em;margin-top:4px;}
+.nav-links{display:flex;align-items:center;gap:30px;}
+.nav-links a{font-size:14.5px;color:var(--ink-2);font-weight:480;transition:color .15s;}
+.nav-links a:hover{color:var(--ink);}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.lang-toggle{
+  display:flex;border:1px solid var(--line-2);border-radius:9px;overflow:hidden;font-family:var(--mono);font-size:11px;font-weight:500;
+}
+.lang-toggle button{padding:6px 9px;background:transparent;border:0;cursor:pointer;color:var(--ink-3);letter-spacing:0.05em;}
+.lang-toggle button.on{background:var(--ink);color:var(--on-ink);}
+.nav-signin{font-size:14.5px;color:var(--ink-2);font-weight:500;cursor:pointer;}
+.nav-signin:hover{color:var(--ink);}
+.menu-btn{display:none;}
+
+/* ---------- hero ---------- */
+.hero{padding:74px 0 40px;position:relative;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:46px;}
+.hero-copy{max-width:720px;}
+.hero h1{font-size:clamp(40px,6.1vw,72px);letter-spacing:-0.035em;margin:20px 0 0;}
+.hero h1 .muted{color:var(--ink-3);}
+.hero .lead{margin-top:22px;max-width:600px;}
+.hero-cta{display:flex;gap:13px;margin-top:30px;flex-wrap:wrap;}
+.trust-row{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink-2);}
+.trust-item svg{width:15px;height:15px;color:var(--ink-2);flex-shrink:0;}
+
+/* ---------- dashboard mockup ---------- */
+.mock-frame{
+  border:1px solid var(--line);border-radius:20px;background:var(--card);
+  box-shadow:0 1px 2px rgba(0,0,0,.04), 0 40px 80px -40px rgba(15,18,30,.28), 0 18px 40px -30px rgba(15,18,30,.2);
+  overflow:hidden;position:relative;
+}
+.mock-bar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--bg-soft);}
+.mock-dot{width:11px;height:11px;border-radius:50%;background:#dadade;}
+.mock-url{
+  margin-left:12px;font-family:var(--mono);font-size:11px;color:var(--ink-3);
+  background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:4px 12px;flex:1;max-width:280px;
+}
+.mock-body{display:grid;grid-template-columns:160px 1fr;min-height:430px;}
+.mock-side{border-right:1px solid var(--line);padding:18px 14px;background:var(--bg-soft);}
+.mock-side .brand{margin-bottom:22px;padding-left:4px;}
+.mock-nav{display:flex;flex-direction:column;gap:3px;}
+.mock-nav a{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2);padding:8px 9px;border-radius:8px;font-weight:480;}
+.mock-nav a.active{background:var(--ink);color:var(--on-ink);}
+.mock-nav .ico{width:15px;height:15px;opacity:.65;flex-shrink:0;display:grid;place-items:center;}
+.mock-nav .ico svg{width:15px;height:15px;stroke-width:1.9;}
+.mock-nav a.active .ico{opacity:1;}
+.mock-main{padding:18px 20px;display:flex;flex-direction:column;gap:14px;background:var(--bg);}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr 1.05fr;gap:12px;}
+.mc{border:1px solid var(--line);border-radius:13px;padding:13px 14px;background:var(--card);}
+.mc .k{font-family:var(--mono);font-size:9px;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink-3);}
+.mc .v{font-size:23px;font-weight:650;letter-spacing:-0.03em;margin-top:7px;}
+.mc .chg{font-size:11px;font-weight:600;margin-top:5px;display:inline-flex;align-items:center;gap:4px;}
+.up{color:var(--c-green);}
+.down{color:var(--c-red);}
+.spark{height:30px;margin-top:8px;}
+
+/* allocation donut */
+.mock-row{display:grid;grid-template-columns:1fr 158px;gap:12px;align-items:stretch;}
+.alloc{border:1px solid var(--line);border-radius:13px;padding:13px;background:var(--card);display:flex;flex-direction:column;overflow:hidden;}
+.alloc .hd{display:flex;flex-direction:column;gap:7px;margin-bottom:10px;}
+.alloc-toggle{display:flex;gap:4px;}
+.alloc-toggle span{flex:1;text-align:center;font-family:var(--mono);font-size:8px;padding:3px 0;border-radius:5px;color:var(--ink-3);border:1px solid var(--line);letter-spacing:0.04em;text-transform:uppercase;}
+.alloc-toggle span.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink);}
+.donut{width:96px;height:96px;border-radius:50%;margin:2px auto 12px;position:relative;
+  background:conic-gradient(var(--c-green) 0 39.4%, var(--c-purple) 39.4% 72.4%, var(--c-blue) 72.4% 90.6%, var(--c-orange) 90.6% 95.9%, var(--c-pink) 95.9% 100%);}
+.donut::after{content:"";position:absolute;inset:20px;border-radius:50%;background:var(--card);}
+.alloc-legend{display:flex;flex-direction:column;gap:6px;margin-top:auto;}
+.alloc-legend .row{display:flex;align-items:center;gap:7px;font-size:10.5px;}
+.alloc-legend .row .d{width:7px;height:7px;border-radius:2px;flex-shrink:0;}
+.alloc-legend .row .nm{color:var(--ink-2);}
+.alloc-legend .row .pct{margin-left:auto;font-family:var(--mono);font-size:9.5px;font-weight:600;color:var(--ink);}
+
+/* risk dna gauge */
+.dna{display:flex;align-items:center;gap:13px;}
+.dna-ring{
+  width:58px;height:58px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(var(--c-green) 0 30%, var(--c-orange) 30% 66%, var(--c-red) 66% 100%);
+  display:grid;place-items:center;position:relative;
+}
+.dna-ring::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--card);}
+.dna-num{position:relative;z-index:1;font-size:18px;font-weight:700;letter-spacing:-0.03em;}
+.dna-bars{flex:1;display:flex;flex-direction:column;gap:5px;}
+.dna-bar{display:flex;align-items:center;gap:7px;}
+.dna-bar .lab{font-family:var(--mono);font-size:8px;letter-spacing:0.05em;color:var(--ink-3);width:42px;text-transform:uppercase;}
+.dna-bar .track{flex:1;height:4px;border-radius:3px;background:var(--bg-soft-2);overflow:hidden;}
+.dna-bar .fill{height:100%;border-radius:3px;}
+.dna-bar .num{font-family:var(--mono);font-size:9px;font-weight:600;color:var(--ink-2);width:16px;text-align:right;}
+.dna-tag{font-family:var(--mono);font-size:8px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--c-green);background:color-mix(in srgb,var(--c-green) 12%,transparent);padding:2px 6px;border-radius:5px;}
+
+.mock-chart{border:1px solid var(--line);border-radius:13px;padding:14px;background:var(--card);position:relative;}
+.mock-chart .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.chart-tabs{display:flex;gap:4px;}
+.chart-tabs span{font-family:var(--mono);font-size:9px;padding:3px 7px;border-radius:6px;color:var(--ink-3);border:1px solid var(--line);}
+.chart-tabs span.on{background:var(--ink);color:var(--on-ink);border-color:var(--ink);}
+
+.mock-bottom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.metric{border:1px solid var(--line);border-radius:11px;padding:10px 11px;}
+.metric .k{font-family:var(--mono);font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);}
+.metric .v{font-size:16px;font-weight:650;letter-spacing:-0.02em;margin-top:4px;}
+
+/* floating tag on mock */
+.mock-tag{
+  position:absolute;right:-14px;top:84px;background:var(--ink);color:var(--on-ink);
+  border-radius:12px;padding:11px 14px;display:flex;gap:9px;align-items:center;
+  box-shadow:0 20px 40px -16px rgba(0,0,0,.5);max-width:230px;
+}
+.mock-tag .ic{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex-shrink:0;}
+.mock-tag .ic svg{width:15px;height:15px;}
+.mock-tag .tt{font-size:10px;color:rgba(255,255,255,.6);font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;}
+.mock-tag .td{font-size:12.5px;font-weight:550;margin-top:2px;line-height:1.25;}
+
+/* ---------- coverage strip ---------- */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-soft);padding:24px 0;margin-top:46px;}
+.strip-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:center;}
+.strip .lbl{font-family:var(--mono);font-size:11px;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink-3);}
+.strip .markets{display:flex;gap:30px;flex-wrap:wrap;align-items:center;}
+.strip .mk{font-size:15px;font-weight:600;color:var(--ink-2);letter-spacing:-0.01em;display:flex;align-items:center;gap:7px;}
+.strip .mk .d{width:7px;height:7px;border-radius:50%;}
+
+/* ---------- section scaffolding ---------- */
+section.block{padding:108px 0;}
+.sec-head{max-width:680px;}
+.sec-head h2{margin-top:16px;}
+.sec-head .lead{margin-top:20px;}
+
+/* ---------- privacy (dark) ---------- */
+.privacy{background:var(--invert-bg);color:var(--invert-fg);padding:110px 0;}
+.privacy .eyebrow{color:#fff;opacity:.55;}
+.privacy h2{color:#fff;max-width:880px;}
+.privacy h2 em{font-style:normal;color:var(--ink-3);}
+.privacy .lead{color:rgba(255,255,255,.62);max-width:560px;}
+.priv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px;}
+.priv-card{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:24px 22px;background:rgba(255,255,255,.025);}
+.priv-card .ic{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,.07);display:grid;place-items:center;margin-bottom:18px;}
+.priv-card .ic svg{width:19px;height:19px;color:#fff;}
+.priv-card h3{font-size:16.5px;margin-bottom:8px;letter-spacing:-0.02em;}
+.priv-card p{font-size:13.5px;color:rgba(255,255,255,.55);line-height:1.5;}
+.priv-note{margin-top:42px;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.4);letter-spacing:0.05em;flex-wrap:wrap;}
+.priv-note span{display:flex;align-items:center;gap:7px;}
+.priv-note .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3);}
+
+/* ---------- how it works ---------- */
+.how{background:var(--bg);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:58px;}
+.step{position:relative;}
+.step-num{font-family:var(--mono);font-size:12px;color:var(--ink-2);letter-spacing:0.1em;margin-bottom:18px;}
+.step-visual{
+  border:1px solid var(--line);border-radius:16px;background:var(--bg-soft);
+  aspect-ratio:4/3;margin-bottom:20px;overflow:hidden;position:relative;display:grid;place-items:center;
+}
+.step h3{font-size:19px;letter-spacing:-0.02em;margin-bottom:9px;}
+.step p{font-size:14.5px;color:var(--ink-2);line-height:1.55;}
+
+/* upload visual — mirrors the real “Foto da Carteira” modal */
+.upload-vis{width:88%;display:flex;flex-direction:column;gap:7px;}
+.upopt{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 13px;text-align:left;}
+.upopt.hot{background:var(--bg-soft-2);border-color:var(--line-2);}
+.upopt .ic{width:32px;height:32px;border-radius:9px;background:var(--bg-soft-2);display:grid;place-items:center;flex-shrink:0;}
+.upopt.hot .ic{background:var(--card);}
+.upopt .ic svg{width:16px;height:16px;color:var(--ink);}
+.upopt .t1{font-size:12.5px;font-weight:600;letter-spacing:-0.01em;}
+.upopt .t2{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:3px;letter-spacing:0.03em;}
+.upopt .arr{margin-left:auto;color:var(--ink-3);font-size:13px;}
+.up-priv{display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:0.05em;color:var(--ink-3);margin-top:4px;text-align:center;}
+.up-priv svg{width:11px;height:11px;}
+
+/* scan visual: small holdings list with check */
+.scan-vis{width:84%;display:flex;flex-direction:column;gap:7px;}
+.scan-row{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 11px;}
+.scan-row .d{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.scan-row .tk{font-weight:650;font-size:12.5px;}
+.scan-row .nm{font-size:10px;color:var(--ink-3);font-family:var(--mono);letter-spacing:0.03em;}
+.scan-row .ck{margin-left:auto;color:var(--c-green);}
+.scan-row .ck svg{width:14px;height:14px;}
+
+/* analysis visual: verdict card */
+.an-vis{width:84%;display:flex;flex-direction:column;gap:9px;}
+.an-card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px;}
+.an-card .k{font-family:var(--mono);font-size:8.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;}
+.an-bars{display:flex;flex-direction:column;gap:6px;}
+.an-bar{display:flex;align-items:center;gap:8px;}
+.an-bar .lab{font-size:10px;color:var(--ink-2);width:54px;}
+.an-bar .track{flex:1;height:5px;border-radius:3px;background:var(--bg-soft-2);overflow:hidden;}
+.an-bar .fill{height:100%;border-radius:3px;}
+.an-bar .pct{font-family:var(--mono);font-size:9px;color:var(--ink-2);width:26px;text-align:right;}
+
+/* ---------- quant engine ---------- */
+.quant{background:var(--bg-soft);}
+.profiles{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:54px;}
+.profile{
+  background:var(--card);border:1px solid var(--line);border-radius:15px;padding:20px 17px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;cursor:default;
+}
+.profile:hover{transform:translateY(-4px);box-shadow:0 22px 44px -28px rgba(15,18,30,.3);border-color:var(--line-2);}
+.profile .pico{width:34px;height:34px;border-radius:9px;background:var(--bg-soft);display:grid;place-items:center;margin-bottom:16px;border:1px solid var(--line);}
+.profile .pico svg{width:17px;height:17px;color:var(--ink);}
+.profile.sel{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink);}
+.profile h3{font-size:16px;letter-spacing:-0.02em;margin-bottom:7px;}
+.profile p{font-size:12.5px;color:var(--ink-2);line-height:1.45;}
+
+.impact{
+  margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:17px;
+  padding:26px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+}
+.impact .it .k{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-3);}
+.impact .it .flow{display:flex;align-items:baseline;gap:8px;margin-top:9px;}
+.impact .it .from{font-size:18px;color:var(--ink-3);font-weight:550;}
+.impact .it .arrow{color:var(--ink-3);font-size:13px;}
+.impact .it .to{font-size:26px;font-weight:680;letter-spacing:-0.03em;}
+.impact .it .to.g{color:var(--c-green);}
+.impact .it .to.o{color:var(--c-orange);}
+
+/* ---------- vortaris intelligence ---------- */
+.intel{background:var(--bg);}
+.intel-panel{
+  margin-top:50px;border:1px solid var(--line);border-radius:18px;background:var(--card);
+  box-shadow:0 1px 2px rgba(0,0,0,.04), 0 40px 80px -52px rgba(15,18,30,.3);overflow:hidden;
+}
+.intel-bar{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--line);}
+.intel-brand{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;}
+.intel-brand .star{color:var(--ink);font-size:14px;}
+.intel-analyze{display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:var(--on-ink);font-size:12.5px;font-weight:550;padding:8px 15px;border-radius:9px;}
+.intel-body{padding:24px;display:flex;flex-direction:column;gap:14px;}
+.intel-block{background:var(--bg-soft);border:1px solid var(--line);border-radius:13px;padding:20px 22px;}
+.intel-block .k{font-family:var(--mono);font-size:10px;letter-spacing:0.13em;text-transform:uppercase;color:var(--ink-3);margin-bottom:13px;}
+.intel-block p{font-size:15px;line-height:1.6;color:var(--ink);letter-spacing:-0.005em;}
+.intel-block p + p{margin-top:11px;}
+.intel-disc{font-size:11.5px;color:var(--ink-3);font-style:italic;margin-top:14px;padding-top:13px;border-top:1px solid var(--line);}
+.reason-list{display:flex;flex-direction:column;gap:13px;}
+.reason{padding-left:15px;border-left:2px solid var(--line-2);}
+.reason:nth-child(1){border-left-color:var(--c-green);}
+.reason:nth-child(2){border-left-color:var(--c-orange);}
+.reason:nth-child(3){border-left-color:var(--ink);}
+.reason p{font-size:14px;line-height:1.55;color:var(--ink-2);}
+.reason strong{color:var(--ink);font-weight:600;}
+.intel-verdicts{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.verdict{border-radius:13px;padding:18px 20px;border:1px solid;}
+.verdict.good{background:color-mix(in srgb, var(--c-green) 7%, var(--card));border-color:color-mix(in srgb, var(--c-green) 28%, var(--line));}
+.verdict.watch{background:color-mix(in srgb, var(--c-red) 6%, var(--card));border-color:color-mix(in srgb, var(--c-red) 24%, var(--line));}
+.verdict .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;}
+.verdict.good .lab{color:var(--c-green);}
+.verdict.watch .lab{color:var(--c-red);}
+.verdict .tk{font-size:18px;font-weight:680;letter-spacing:-0.02em;margin:8px 0 7px;}
+.verdict p{font-size:13px;line-height:1.5;color:var(--ink-2);}
+.intel-foot{font-family:var(--mono);font-size:10.5px;color:var(--ink-3);text-align:right;letter-spacing:0.04em;}
+.intel-feats{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap;}
+.intel-feat{flex:1;min-width:200px;}
+.intel-feat h4{font-size:15px;letter-spacing:-0.02em;margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.intel-feat h4 .s{color:var(--ink-3);}
+.intel-feat p{font-size:13.5px;color:var(--ink-2);line-height:1.5;}
+@media(max-width:720px){ .intel-verdicts{grid-template-columns:1fr;} }
+
+/* ---------- coverage section ---------- */
+.coverage{background:var(--bg);}
+.cov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:54px;}
+.cov-card{border:1px solid var(--line);border-radius:16px;padding:24px 22px;background:var(--card);transition:border-color .2s, transform .2s;}
+.cov-card:hover{transform:translateY(-3px);border-color:var(--line-2);}
+.cov-card .ch{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;margin-bottom:18px;}
+.cov-card .ch svg{width:18px;height:18px;color:#fff;}
+.cov-card h3{font-size:17px;letter-spacing:-0.02em;margin-bottom:9px;}
+.cov-card p{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin-bottom:15px;}
+.cov-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.cov-tags span{font-family:var(--mono);font-size:10px;color:var(--ink-2);background:var(--bg-soft);border:1px solid var(--line);border-radius:6px;padding:4px 8px;letter-spacing:0.03em;}
+
+/* ---------- metrics band ---------- */
+.metrics-band{background:var(--invert-bg);color:var(--invert-fg);padding:70px 0;}
+.metrics-band .top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:42px;}
+.metrics-band h2{color:#fff;font-size:clamp(26px,3vw,38px);max-width:560px;}
+.metrics-band .eyebrow{color:#fff;opacity:.5;}
+.mb-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:16px;overflow:hidden;}
+.mb-cell{background:var(--invert-bg);padding:22px 18px;}
+.mb-cell .k{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.mb-cell .v{font-size:27px;font-weight:680;letter-spacing:-0.03em;margin-top:10px;}
+.mb-cell .v.b{color:#5b9bff;} .mb-cell .v.r{color:#ff6b6b;}
+.mb-cell .s{font-size:11px;color:rgba(255,255,255,.4);margin-top:5px;}
+
+/* ---------- final CTA ---------- */
+.final{padding:128px 0;text-align:center;background:var(--bg);}
+.final h2{font-size:clamp(34px,5vw,60px);max-width:760px;margin:0 auto;letter-spacing:-0.035em;}
+.final .lead{margin:22px auto 34px;max-width:480px;}
+.final .btns{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;}
+.final .fineprint{margin-top:22px;font-family:var(--mono);font-size:12px;color:var(--ink-3);letter-spacing:0.03em;}
+
+/* ---------- footer ---------- */
+footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0 36px;}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;}
+.foot-brand p{font-size:13.5px;color:var(--ink-2);max-width:300px;margin-top:16px;line-height:1.55;}
+.foot-addr{font-style:normal;font-size:13px;color:var(--ink-3);line-height:1.5;margin-top:14px;display:flex;align-items:center;gap:7px;}
+.foot-addr svg{width:14px;height:14px;flex-shrink:0;}
+.foot-col h4{font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:16px;}
+.foot-col a{display:block;font-size:14px;color:var(--ink-2);margin-bottom:11px;}
+.foot-col a:hover{color:var(--ink);}
+.foot-bottom{border-top:1px solid var(--line);margin-top:44px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.foot-compliance{display:flex;gap:18px;flex-wrap:wrap;}
+.foot-compliance span{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.03em;display:flex;align-items:center;gap:6px;}
+.foot-compliance svg{width:13px;height:13px;}
+.foot-copy{font-size:12.5px;color:var(--ink-3);}
+.foot-disclaimer{width:100%;border-top:1px solid var(--line);margin-top:20px;padding-top:18px;font-size:11.5px;line-height:1.55;color:var(--ink-3);max-width:760px;}
+
+/* reveal — visible by default; hidden-then-animate only when html.anim is set.
+   Transition lives under .anim so removing the class leaves nothing to freeze. */
+.anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+.anim .reveal.in{opacity:1;transform:none;}
+
+/* ---------- responsive ---------- */
+@media(max-width:1000px){
+  .mock-cards{grid-template-columns:1fr 1fr;}
+  .mock-row{grid-template-columns:1fr;}
+  .priv-grid{grid-template-columns:1fr 1fr;}
+  .profiles{grid-template-columns:repeat(2,1fr);}
+  .cov-grid{grid-template-columns:1fr 1fr;}
+  .mb-grid{grid-template-columns:repeat(3,1fr);}
+  .impact{grid-template-columns:1fr 1fr;}
+  .foot-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:720px){
+  .nav-links,.nav-signin{display:none;}
+  .menu-btn{display:grid;}
+  .steps{grid-template-columns:1fr;}
+  .priv-grid,.cov-grid{grid-template-columns:1fr;}
+  .mb-grid{grid-template-columns:repeat(2,1fr);}
+  .profiles{grid-template-columns:1fr;}
+  .impact{grid-template-columns:1fr;}
+  .mock-body{grid-template-columns:1fr;}
+  .mock-side{display:none;}
+  .mock-tag{display:none;}
+  .foot-top{grid-template-columns:1fr;}
+  section.block{padding:78px 0;}
+  .hero{padding:48px 0 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <div class="logo-mark">V</div>
+      <div class="brand-text">
+        <span class="brand-name">VORTARIS</span>
+        <span class="brand-sub">INTELLIGENCE</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">Como funciona</a>
+      <a href="#quant">Quant Engine</a>
+      <a href="#privacy">Privacidade</a>
+      <a href="#coverage">Cobertura</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button onclick="location.href='Landing Page.html'">EN</button>
+        <button class="on">PT</button>
+      </div>
+      <span class="nav-signin">Entrar</span>
+      <a class="btn btn-primary" href="#start">Comece grátis</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Inteligência Global de Portfólio</span>
+      <h1 id="hero-headline">Veja sua carteira como <span class="muted">as instituições veem.</span></h1>
+      <p class="lead">Seu patrimônio global unificado em segundos. Zero corretagem, total transparência. Monitore a volatilidade e simule cenários para suas ações, cripto e ETFs globais com a tecnologia Quant Engine.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="#start">Comece grátis</a>
+        <a class="btn btn-ghost btn-lg" href="#how">Veja como funciona</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          Criptografia de nível bancário
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>
+          Privacidade em primeiro lugar
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>
+          Guardamos só seu nome e e-mail
+        </div>
+      </div>
+    </div>
+
+    <!-- dashboard mockup -->
+    <div class="mock-frame reveal" style="transition-delay:.1s">
+      <div class="mock-bar">
+        <div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div>
+        <div class="mock-url">app.vortaris.co/dashboard</div>
+      </div>
+      <div class="mock-body">
+        <aside class="mock-side">
+          <a class="brand" href="#top" style="pointer-events:none">
+            <div class="logo-mark" style="width:26px;height:26px;font-size:14px">V</div>
+            <div class="brand-text"><span class="brand-name" style="font-size:13px">VORTARIS</span></div>
+          </a>
+          <nav class="mock-nav">
+            <a class="active"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Dashboard</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14h2"/></svg></span>Carteira</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 18 10 11l4 4 6-7"/><path d="M20 8v4h-4"/></svg></span>Retorno</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>Correlação</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>Quant Engine</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg></span>Risco por Ativo</a>
+          </nav>
+        </aside>
+        <div class="mock-main">
+          <div class="mock-cards">
+            <div class="mc">
+              <div class="k">Total Investido</div>
+              <div class="v">$1,604,370</div>
+              <div class="chg up">▲ +1,24% hoje</div>
+            </div>
+            <div class="mc">
+              <div class="k">Retorno Anual · CAGR</div>
+              <div class="v">27.39%</div>
+              <div class="chg up">▲ +US$ 374.313 total</div>
+            </div>
+            <div class="mc">
+              <div class="k" style="display:flex;align-items:center;justify-content:space-between">Risk DNA <span class="dna-tag">Bom · 66</span></div>
+              <div class="dna" style="margin-top:8px">
+                <div class="dna-ring"><span class="dna-num">66</span></div>
+                <div class="dna-bars">
+                  <div class="dna-bar"><span class="lab">Retorno</span><span class="track"><span class="fill" style="width:88%;background:var(--c-green)"></span></span><span class="num">88</span></div>
+                  <div class="dna-bar"><span class="lab">Volat.</span><span class="track"><span class="fill" style="width:72%;background:var(--c-orange)"></span></span><span class="num">72</span></div>
+                  <div class="dna-bar"><span class="lab">Divers.</span><span class="track"><span class="fill" style="width:58%;background:var(--c-orange)"></span></span><span class="num">58</span></div>
+                  <div class="dna-bar"><span class="lab">Geo</span><span class="track"><span class="fill" style="width:30%;background:var(--c-red)"></span></span><span class="num">30</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-row">
+            <div class="mock-chart">
+              <div class="hd">
+                <span class="mono-label">Retorno Acumulado — Carteira vs Benchmarks</span>
+                <div class="chart-tabs"><span>1M</span><span>6M</span><span class="on">1Y</span><span>5Y</span></div>
+              </div>
+              <svg class="chart-svg" viewBox="0 0 600 150" preserveAspectRatio="none" style="width:100%;height:150px">
+                <defs>
+                  <linearGradient id="fillG" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.16"/>
+                    <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,120 C60,116 90,100 140,104 C190,108 220,72 270,78 C320,84 350,54 400,46 C450,38 480,52 520,30 C550,16 580,22 600,14 L600,150 L0,150 Z" fill="url(#fillG)"/>
+                <path d="M0,120 C60,116 90,100 140,104 C190,108 220,72 270,78 C320,84 350,54 400,46 C450,38 480,52 520,30 C550,16 580,22 600,14" fill="none" stroke="var(--accent)" stroke-width="2.4"/>
+                <path d="M0,128 C70,126 110,130 160,118 C210,106 250,124 300,112 C350,100 390,116 440,92 C490,68 530,96 600,70" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-dasharray="5 5" opacity="0.55"/>
+              </svg>
+            </div>
+            <div class="alloc">
+              <div class="hd">
+                <span class="mono-label">Alocação</span>
+                <div class="alloc-toggle"><span>Ativo</span><span class="on">Setor</span></div>
+              </div>
+              <div class="donut"></div>
+              <div class="alloc-legend">
+                <div class="row"><span class="d" style="background:var(--c-green)"></span><span class="nm">Total Market</span><span class="pct">39.4%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-purple)"></span><span class="nm">Dividendos</span><span class="pct">33.0%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-blue)"></span><span class="nm">Renda</span><span class="pct">18.2%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-orange)"></span><span class="nm">Tecnologia</span><span class="pct">5.3%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-pink)"></span><span class="nm">Internacional</span><span class="pct">3.3%</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-bottom">
+            <div class="metric"><div class="k">Sharpe</div><div class="v">1.69</div></div>
+            <div class="metric"><div class="k">Sortino</div><div class="v">2.51</div></div>
+            <div class="metric"><div class="k">Max Drawdown</div><div class="v" style="color:var(--c-red)">−7.85%</div></div>
+            <div class="metric"><div class="k">Volatilidade</div><div class="v">11.07%</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- coverage strip -->
+  <div class="strip reveal">
+    <div class="wrap strip-inner">
+      <span class="lbl">Uma plataforma, todos os mercados</span>
+      <div class="markets">
+        <span class="mk"><span class="d" style="background:var(--c-orange)"></span>Cripto</span>
+        <span class="mk"><span class="d" style="background:var(--c-blue)"></span>Ações e ETFs dos EUA</span>
+        <span class="mk"><span class="d" style="background:var(--c-green)"></span>Mercados globais</span>
+        <span class="mk"><span class="d" style="background:var(--c-purple)"></span>Ações B3</span>
+        <span class="mk"><span class="d" style="background:var(--c-pink)"></span>Tesouro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="block how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Configuração em menos de um minuto</span>
+      <h2>O jeito mais fácil de trazer sua carteira.</h2>
+      <p class="lead">Sem credenciais de conta. Sem planilhas. Sem digitação manual. Upload o print e a Vortaris faz o resto.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">PASSO 01</div>
+        <div class="step-visual">
+          <div class="upload-vis">
+            <div class="upopt hot">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.5" r="3.2"/></svg></div>
+              <div><div class="t1">Foto da sua carteira</div><div class="t2">Fotografe seu extrato</div></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="upopt">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.6"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg></div>
+              <div><div class="t1">Envie uma imagem</div><div class="t2">PNG · JPG · PDF</div></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="upopt">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></div>
+              <div><div class="t1">Importe um CSV</div><div class="t2">Exportado da sua corretora</div></div>
+              <span class="arr">›</span>
+            </div>
+            <div class="up-priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Analisado e descartado — nunca salvo</div>
+          </div>
+        </div>
+        <h3>Fotografe, envie ou importe</h3>
+        <p>Tire uma foto do seu extrato, envie um PNG, JPG ou PDF, ou importe um CSV da sua corretora. As imagens são analisadas e descartadas na hora — nunca armazenadas.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.08s">
+        <div class="step-num">PASSO 02</div>
+        <div class="step-visual">
+          <div class="scan-vis">
+            <div class="scan-row"><span class="d" style="background:var(--c-blue)"></span><div><div class="tk">VTI</div><div class="nm">Vanguard Total Stock</div></div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+            <div class="scan-row"><span class="d" style="background:var(--c-orange)"></span><div><div class="tk">PETR4</div><div class="nm">Petrobras PN · B3</div></div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+            <div class="scan-row"><span class="d" style="background:var(--c-purple)"></span><div><div class="tk">BTC</div><div class="nm">Bitcoin</div></div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
+          </div>
+        </div>
+        <h3>Identificamos seus ativos</h3>
+        <p>Nosso scanner proprietário lê cada ticker, quantidade e preço — reconhecendo posições em cripto, EUA, mercados globais e brasileiros automaticamente.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.16s">
+        <div class="step-num">PASSO 03</div>
+        <div class="step-visual">
+          <div class="an-vis">
+            <div class="an-card">
+              <div class="k">Análise da Carteira</div>
+              <div class="an-bars">
+                <div class="an-bar"><span class="lab">Diversif.</span><span class="track"><span class="fill" style="width:45%;background:var(--c-orange)"></span></span><span class="pct">45</span></div>
+                <div class="an-bar"><span class="lab">Risco</span><span class="track"><span class="fill" style="width:72%;background:var(--c-green)"></span></span><span class="pct">72</span></div>
+                <div class="an-bar"><span class="lab">Renda</span><span class="track"><span class="fill" style="width:62%;background:var(--c-blue)"></span></span><span class="pct">62</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3>Visualize uma análise educacional</h3>
+        <p>Risco, correlação e retornos históricos, além de cenários hipotéticos de realocação — calculados em segundos. A profundidade de uma mesa de operações, em linguagem clara para você entender e explorar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Privacidade é a base</span>
+      <h2>Coletamos seu primeiro nome e e-mail. <em>Nada além disso.</em></h2>
+      <p class="lead">Sem telefone. Sem documentos. Sem vender seus dados — jamais. A Vortaris foi feita para que a única coisa que saibamos sobre você seja como dizer olá.</p>
+    </div>
+    <div class="priv-grid">
+      <div class="priv-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg></div>
+        <h3>Só nome e e-mail</h3>
+        <p>A conta inteira é um primeiro nome e um endereço de e-mail. Nunca pedimos nada de que não precisamos.</p>
+      </div>
+      <div class="priv-card reveal" style="transition-delay:.06s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><path d="M12 2v10"/></svg></div>
+        <h3>Nunca vendemos dados</h3>
+        <p>Suas posições são suas. Não vendemos, compartilhamos nem monetizamos suas informações com ninguém. É inegociável.</p>
+      </div>
+      <div class="priv-card reveal" style="transition-delay:.12s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M6 8H5a4 4 0 0 0 0 8h1M9 12h6"/><path d="m4 4 16 16"/></svg></div>
+        <h3>Sem credenciais, nunca</h3>
+        <p>Nunca pedimos o login ou a senha da sua corretora. Nada se conecta às suas contas — você apenas envia um print ou extrato.</p>
+      </div>
+      <div class="priv-card reveal" style="transition-delay:.18s">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Imagens nunca são salvas</h3>
+        <p>Fotos de extratos e envios são analisados para ler suas posições e descartados na hora. Criptografia AES-256 de ponta a ponta.</p>
+      </div>
+    </div>
+    <div class="priv-note reveal">
+      <span><span class="dot"></span>Criptografia ponta a ponta</span>
+      <span><span class="dot"></span>Em conformidade com a LGPD</span>
+      <span><span class="dot"></span>Em conformidade com o GDPR</span>
+      <span><span class="dot"></span>Sem rastreadores de terceiros vendendo seus dados</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUANT ENGINE ============ -->
+<section class="block quant" id="quant">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">QUANT ENGINE</span>
+      <h2>Um motor proprietário que pensa em risco, não em ruído.</h2>
+      <p class="lead">A Vortaris analisa sua carteira e simula como ela se distribuiria em diferentes perfis de risco, combinando algoritmos quantitativos proprietários com inteligência de IA. Escolha um perfil e explore o cenário em instantes.</p>
+    </div>
+    <div class="profiles">
+      <div class="profile reveal">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Fortaleza</h3>
+        <p>Foco em preservação de capital e baixa oscilação.</p>
+      </div>
+      <div class="profile sel reveal" style="transition-delay:.05s">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
+        <h3>Renda Estratégica</h3>
+        <p>Equilíbrio entre geração de renda e crescimento.</p>
+      </div>
+      <div class="profile reveal" style="transition-delay:.1s">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
+        <h3>Macro Global</h3>
+        <p>Diversificação global, resiliência macro.</p>
+      </div>
+      <div class="profile reveal" style="transition-delay:.15s">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
+        <h3>Momentum</h3>
+        <p>Exposição a tendências de mercado.</p>
+      </div>
+      <div class="profile reveal" style="transition-delay:.2s">
+        <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3>Fronteira</h3>
+        <p>Perfil de maior risco e maior oscilação.</p>
+      </div>
+    </div>
+    <div class="impact reveal">
+      <div class="it">
+        <div class="k">Índice de Diversificação</div>
+        <div class="flow"><span class="from">42</span><span class="arrow">→</span><span class="to g">45</span></div>
+      </div>
+      <div class="it">
+        <div class="k">Volatilidade Simulada</div>
+        <div class="flow"><span class="from">12.6%</span><span class="arrow">→</span><span class="to o">13.3%</span></div>
+      </div>
+      <div class="it">
+        <div class="k">Renda Passiva · Yield</div>
+        <div class="flow"><span class="from">3.49%</span><span class="arrow">→</span><span class="to g">4.10%</span></div>
+      </div>
+      <div class="it">
+        <div class="k">Renda Anual Simulada</div>
+        <div class="flow"><span class="from">$54.6k</span><span class="arrow">→</span><span class="to g">$64.1k</span></div>
+      </div>
+    </div>
+    <p class="reveal" style="font-family:var(--mono);font-size:11px;letter-spacing:0.03em;color:var(--ink-3);margin-top:20px;line-height:1.55;max-width:640px">Valores de simulação, para fins educacionais. Rentabilidade passada não garante resultados futuros.</p>
+  </div>
+</section>
+
+<!-- ============ VORTARIS INTELLIGENCE ============ -->
+<section class="block intel" id="intelligence">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">✦ Vortaris Intelligence</span>
+      <h2>Não recomenda. Explica o porquê dos números.</h2>
+      <p class="lead">A Vortaris Intelligence é a camada proprietária que lê toda a sua carteira, risco, correlação, concentração, renda, e explica em linguagem clara, para fins educacionais. Cada cenário hipotético vem com o raciocínio por trás dos números, permitindo que tome decisões com maior clareza. </p>
+    </div>
+
+    <div class="intel-panel reveal">
+      <div class="intel-bar">
+        <div class="intel-brand"><span class="star">✦</span> Vortaris Intelligence</div>
+        <span class="intel-analyze">✦ Analisar</span>
+      </div>
+      <div class="intel-body">
+        <div class="intel-block">
+          <div class="k">Avaliação Geral</div>
+          <p>Esta carteira está fortemente concentrada em ações large-cap dos EUA e estratégias de altos dividendos, com diversificação internacional moderada via VXUS e VYMI. A inclinação para fundos voltados a rendimento aumenta o risco de taxa de juros e de concentração setorial, enquanto a ausência de renda fixa eleva a volatilidade geral.</p>
+          <div class="intel-disc">Uma análise geral gerada por IA para fins educacionais. Não é recomendação de investimento.</div>
+        </div>
+
+        <div class="intel-block">
+          <div class="k">Como o cenário é construído — o raciocínio</div>
+          <div class="reason-list">
+            <p class="reason"><strong>No cenário simulado, AMLP e JEPI têm o maior peso.</strong> Historicamente distribuem acima do yield atual de 3,49%, o que, na simulação, elevaria a renda hipotética dentro do perfil de Renda Estratégica.</p>
+            <p class="reason"><strong>O cenário ilustra menor peso em VTI, VOO e VYM por redundância.</strong> A exposição large-cap se sobrepõe à de VYMI e GPIQ — com correlação de +0,99, esses ativos se movem juntos. É o que os dados mostram.</p>
+            <p class="reason"><strong>O trade-off é explícito.</strong> Na simulação, o yield hipotético vai de 3,49% para 4,10% e a volatilidade, de 12,6% para 13,3%. São valores estimados, para fins educacionais.</p>
+          </div>
+        </div>
+
+        <div class="intel-verdicts">
+          <div class="verdict good">
+            <span class="lab">Característica</span>
+            <div class="tk">VTI</div>
+            <p>Cobertura ampla do mercado americano e taxa baixa. Historicamente, costuma figurar como um componente de base em carteiras diversificadas.</p>
+          </div>
+          <div class="verdict watch">
+            <span class="lab">Ponto de atenção</span>
+            <div class="tk">VYMI</div>
+            <p>Como fundo internacional de altos dividendos, está exposto a oscilações cambiais e ao crescimento global — vale monitorar se o dólar se fortalecer.</p>
+          </div>
+        </div>
+        <div class="intel-foot">Gerado em segundos · Conteúdo educacional · Não é recomendação de investimento</div>
+      </div>
+    </div>
+
+    <div class="intel-feats">
+      <div class="intel-feat reveal">
+        <h4><span class="s">✦</span> Lê o quadro completo</h4>
+        <p>Risco, correlação, concentração, geografia e renda — analisados em conjunto, não um gráfico de cada vez.</p>
+      </div>
+      <div class="intel-feat reveal" style="transition-delay:.07s">
+        <h4><span class="s">✦</span> Explica cada número</h4>
+        <p>Cada mudança no cenário simulado vem com o raciocínio e o trade-off por trás dela, para você entender a lógica.</p>
+      </div>
+      <div class="intel-feat reveal" style="transition-delay:.14s">
+        <h4><span class="s">✦</span> Linguagem clara, sem jargão</h4>
+        <p>Profundidade de nível institucional, escrita para que qualquer pessoa entenda os dados com clareza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COVERAGE ============ -->
+<section class="block coverage" id="coverage">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Uma plataforma. Todos os mercados.</span>
+      <h2>Cripto, ações dos EUA e globais, e toda a B3.</h2>
+      <p class="lead">Desenhado para o investidor local que rompeu fronteiras e para o investidor global que exige uma visão unificada. Rompa a barreira das moedas e das corretoras. Tenha o controle absoluto do seu patrimônio em uma única tela.</p>
+    </div>
+    <div class="cov-grid">
+      <div class="cov-card reveal">
+        <div class="ch" style="background:var(--c-orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2.5 2.5 0 0 1 0 5h-4zm0 5h4.5a2.5 2.5 0 0 1 0 5H9.5zM11 6v2m0 10v2"/></svg></div>
+        <h3>Cripto</h3>
+        <p>Acompanhe ativos digitais junto com tudo o mais — sem app separado.</p>
+        <div class="cov-tags"><span>BTC</span><span>ETH</span><span>SOL</span><span>+ majors</span></div>
+      </div>
+      <div class="cov-card reveal" style="transition-delay:.06s">
+        <div class="ch" style="background:var(--c-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
+        <h3>Ações dos EUA e Globais</h3>
+        <p>Ações e ETFs na Nasdaq, NYSE e nas principais bolsas do mundo.</p>
+        <div class="cov-tags"><span>VTI</span><span>VOO</span><span>SMH</span><span>VXUS</span></div>
+      </div>
+      <div class="cov-card reveal" style="transition-delay:.12s">
+        <div class="ch" style="background:var(--c-purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V9m5 11V4m5 16v-8m5 8V7"/></svg></div>
+        <h3>Ações e ETFs Brasileiros</h3>
+        <p>Cobertura completa da B3 — ações, BDRs e fundos listados em um só lugar.</p>
+        <div class="cov-tags"><span>PETR4</span><span>VALE3</span><span>BOVA11</span></div>
+      </div>
+      <div class="cov-card reveal" style="transition-delay:.18s">
+        <div class="ch" style="background:var(--c-green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
+        <h3>Tesouro</h3>
+        <p>Títulos públicos e Tesouro Direto, ponderados no seu quadro completo.</p>
+        <div class="cov-tags"><span>Tesouro</span><span>Selic</span><span>IPCA+</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METRICS BAND ============ -->
+<section class="metrics-band">
+  <div class="wrap">
+    <div class="top reveal">
+      <div>
+        <span class="eyebrow">Profundidade institucional</span>
+        <h2>As métricas de uma mesa de operações — no seu bolso.</h2>
+      </div>
+      <p class="lead" style="color:rgba(255,255,255,.55);max-width:340px;margin:0">Cada posição avaliada com o mesmo framework de risco que profissionais usam para gerir bilhões.</p>
+    </div>
+    <div class="mb-grid reveal">
+      <div class="mb-cell"><div class="k">Volatilidade</div><div class="v">11,07%</div><div class="s">Desvio padrão anual</div></div>
+      <div class="mb-cell"><div class="k">Sharpe</div><div class="v b">1,69</div><div class="s">Ajustado ao risco</div></div>
+      <div class="mb-cell"><div class="k">Sortino</div><div class="v b">2,51</div><div class="s">Ajustado à queda</div></div>
+      <div class="mb-cell"><div class="k">Max Drawdown</div><div class="v r">−7,85%</div><div class="s">Pior pico a fundo</div></div>
+      <div class="mb-cell"><div class="k">VaR 95%</div><div class="v r">−1,18%</div><div class="s">Valor em risco diário</div></div>
+      <div class="mb-cell"><div class="k">CVaR 95%</div><div class="v r">−1,53%</div><div class="s">Perda de cauda esperada</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final" id="start">
+  <div class="wrap reveal">
+    <h2>Sua carteira, analisada em minutos.</h2>
+    <p class="lead">Upload suas posições com um único print e veja-as como as instituições veem.</p>
+    <div class="btns">
+      <a class="btn btn-primary btn-lg" href="#">Comece grátis</a>
+      <a class="btn btn-ghost btn-lg" href="#how">Veja como funciona</a>
+    </div>
+    <div class="fineprint">Sem cartão de crédito. Só um primeiro nome e um e-mail.</div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <div class="logo-mark">V</div>
+          <div class="brand-text"><span class="brand-name">VORTARIS</span><span class="brand-sub">INTELLIGENCE</span></div>
+        </a>
+        <p>Inteligência global de portfólio para investidores que querem ver seu dinheiro como as instituições veem — com privacidade.</p>
+        <address class="foot-addr"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>Fort Lauderdale, FL · USA</address>
+      </div>
+      <div class="foot-col">
+        <h4>Produto</h4>
+        <a href="#how">Como funciona</a>
+        <a href="#quant">Quant Engine</a>
+        <a href="#coverage">Cobertura</a>
+        <a href="#start">Preços</a>
+      </div>
+      <div class="foot-col">
+        <h4>Empresa</h4>
+        <a href="#">Sobre a Vortaris</a>
+        <a href="#privacy">Privacidade</a>
+        <a href="#">Segurança</a>
+        <a href="#">Contato</a>
+      </div>
+      <div class="foot-col">
+        <h4>Jurídico</h4>
+        <a href="#">Política de privacidade</a>
+        <a href="#">Termos de uso</a>
+        <a href="#">LGPD</a>
+        <a href="#">GDPR</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-compliance">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Criptografia ponta a ponta</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>Nuvem segura (AWS)</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Conformidade LGPD e GDPR</span>
+      </div>
+      <div class="foot-copy">© 2026 Vortaris Intelligence. Não é recomendação de investimento.</div>
+    </div>
+    <p class="foot-disclaimer">* O Vortaris é uma plataforma tecnológica de informação e educação financeira, voltada à consolidação de dados e à simulação matemática de cenários. Não realizamos intermediação de operações, oferta, recomendação ou análise de valores mobiliários, nem consultoria ou gestão de investimentos na forma da regulação da CVM. As análises, simulações e números exibidos têm caráter exclusivamente educacional e ilustrativo, não constituem promessa ou garantia de rentabilidade e não devem ser interpretados como aconselhamento financeiro. Rentabilidade passada não representa garantia de resultados futuros. Toda decisão de investimento é de responsabilidade exclusiva do usuário.</p>
+  </div>
+</footer>
+
+<!-- tweaks island -->
+<div id="tweaks-root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script>
+/* nav shadow on scroll */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('scrolled', window.scrollY > 8);
+}, {passive:true});
+
+/* reveal on scroll. Visible end-state is the CSS default; we opt INTO the
+   hidden-then-animate behavior with html.anim, then bail out of it entirely
+   if the environment freezes transitions (so content can never get stuck). */
+const html = document.documentElement;
+let io;
+html.classList.add('anim');
+try {
+  io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+} catch(err) { html.classList.remove('anim'); document.querySelectorAll('.reveal').forEach(el=>el.style.transition='none'); }
+/* failsafe: if the first in-view element hasn't actually animated up (IO never
+   fired, or transitions are frozen), drop animation mode so everything shows. */
+setTimeout(() => {
+  const hc = document.querySelector('.hero-copy');
+  if (!hc || parseFloat(getComputedStyle(hc).opacity) < 0.5){
+    document.querySelectorAll('.reveal').forEach(el=>el.style.transition='none');
+    html.classList.remove('anim');
+  }
+}, 900);
+
+/* lang toggle (visual only) */
+document.querySelectorAll('.lang-toggle button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.lang-toggle button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+</script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#0a0a0b",
+  "dark": false,
+  "headline": "Veja sua carteira como as instituições veem."
+}/*EDITMODE-END*/;
+
+const LIGHT = {
+  "--bg":"#ffffff","--bg-soft":"#f6f6f7","--bg-soft-2":"#f0f0f2",
+  "--ink":"#0a0a0b","--ink-2":"#52525b","--ink-3":"#9a9aa2",
+  "--line":"#ececee","--line-2":"#e2e2e5","--card":"#ffffff",
+  "--on-ink":"#ffffff","--invert-bg":"#0a0a0b","--invert-fg":"#ffffff"
+};
+const DARK = {
+  "--bg":"#0b0b0d","--bg-soft":"#141417","--bg-soft-2":"#1c1c20",
+  "--ink":"#f4f4f5","--ink-2":"#a1a1aa","--ink-3":"#8a8a94",
+  "--line":"#26262b","--line-2":"#34343a","--card":"#141417",
+  "--on-ink":"#0b0b0d","--invert-bg":"#17171b","--invert-fg":"#f4f4f5"
+};
+
+function applyTheme(dark){
+  const t = dark ? DARK : LIGHT;
+  for (const k in t) document.documentElement.style.setProperty(k, t[k]);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+}
+function applyHeadline(text){
+  const el = document.getElementById('hero-headline');
+  if (!el) return;
+  // keep last two words muted for the styled tail
+  const words = text.trim().split(/\s+/);
+  if (words.length > 3){
+    const tail = words.slice(-2).join(' ');
+    const head = words.slice(0, -2).join(' ');
+    el.innerHTML = head + ' <span class="muted">' + tail + '</span>';
+  } else {
+    el.textContent = text;
+  }
+}
+
+function TweaksApp(){
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => { document.documentElement.style.setProperty('--accent', t.dark ? '#e4e4e7' : t.accent); }, [t.accent, t.dark]);
+  React.useEffect(() => { applyTheme(t.dark); }, [t.dark]);
+  React.useEffect(() => { applyHeadline(t.headline); }, [t.headline]);
+  return (
+    <TweaksPanel>
+      <TweakSection label="Brand" />
+      <TweakColor label="Accent" value={t.accent}
+        options={['#0a0a0b','#2f6bf6','#1f8a5b','#7a5ae0','#d4683a']}
+        onChange={(v)=>setTweak('accent', v)} />
+      <TweakToggle label="Dark mode" value={t.dark} onChange={(v)=>setTweak('dark', v)} />
+      <TweakSection label="Copy" />
+      <TweakText label="Hero headline" value={t.headline} onChange={(v)=>setTweak('headline', v)} />
+    </TweaksPanel>
+  );
+}
+
+(function mount(){
+  if (!window.useTweaks || !window.TweaksPanel){ setTimeout(mount, 60); return; }
+  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp/>);
+})();
+</script>
+
+</body>
+</html>
