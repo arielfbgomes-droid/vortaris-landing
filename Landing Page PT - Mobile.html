@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vortaris PT — Mobile</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background:
+      radial-gradient(1200px 800px at 50% -10%, #1b1d24 0%, transparent 60%),
+      #0c0d11;
+    color:#e7e7ea;
+    min-height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:36px 16px 56px;
+    gap:26px;
+  }
+  .head{
+    text-align:center;
+    max-width:520px;
+  }
+  .head .kick{
+    font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+    color:#7c7f8a;
+  }
+  .head h1{
+    font-size:20px;font-weight:600;letter-spacing:-0.02em;margin-top:10px;
+    color:#f4f4f6;
+  }
+  .head p{
+    font-size:13.5px;line-height:1.5;color:#9a9ca5;margin-top:9px;
+  }
+  .head a.open{
+    display:inline-flex;align-items:center;gap:7px;margin-top:16px;
+    font-size:13px;font-weight:550;color:#0c0d11;background:#f4f4f6;
+    padding:9px 16px;border-radius:9px;text-decoration:none;
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .head a.open:hover{transform:translateY(-1px);box-shadow:0 12px 30px -12px rgba(0,0,0,.7);}
+  .head a.open svg{width:14px;height:14px;}
+
+  /* ---- phone ---- */
+  .phone{
+    position:relative;
+    width:390px;
+    height:844px;
+    background:#0a0a0b;
+    border-radius:56px;
+    padding:13px;
+    box-shadow:
+      0 0 0 2px #2a2b30,
+      0 0 0 11px #131418,
+      0 0 0 13px #2a2b30,
+      0 50px 110px -30px rgba(0,0,0,.85),
+      0 24px 60px -30px rgba(0,0,0,.6);
+    flex:0 0 auto;
+  }
+  .phone .screen{
+    position:relative;
+    width:100%;
+    height:100%;
+    border-radius:44px;
+    overflow:hidden;
+    background:#fff;
+  }
+  /* notch / dynamic island */
+  .island{
+    position:absolute;top:11px;left:50%;transform:translateX(-50%);
+    width:118px;height:33px;background:#000;border-radius:20px;z-index:10;
+    pointer-events:none;
+  }
+  /* status bar overlay */
+  .status{
+    position:absolute;top:0;left:0;right:0;height:54px;z-index:9;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 30px 0;pointer-events:none;
+    font-size:13px;font-weight:600;color:#0a0a0b;
+    font-variant-numeric:tabular-nums;
+  }
+  .status .right{display:flex;align-items:center;gap:6px;}
+  .status svg{width:17px;height:17px;}
+  .status .batt{
+    width:24px;height:12px;border:1.5px solid #0a0a0b;border-radius:3px;
+    position:relative;display:inline-block;
+  }
+  .status .batt::before{content:"";position:absolute;inset:1.5px;width:70%;background:#0a0a0b;border-radius:1px;}
+  .status .batt::after{content:"";position:absolute;right:-3px;top:3px;width:1.6px;height:6px;background:#0a0a0b;border-radius:0 1px 1px 0;}
+
+  iframe{
+    width:100%;height:100%;border:0;display:block;
+  }
+  /* home indicator */
+  .home-ind{
+    position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+    width:135px;height:5px;border-radius:3px;background:rgba(0,0,0,.32);z-index:9;
+    pointer-events:none;
+  }
+
+  @media(max-width:460px){
+    body{padding:20px 0 40px;}
+    .phone{
+      width:100vw;height:auto;aspect-ratio:390/844;
+      border-radius:0;padding:0;box-shadow:none;
+    }
+    .phone .screen{border-radius:0;}
+    .island,.home-ind{display:none;}
+    .head{padding:0 18px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="kick">Vortaris · Versão Mobile</div>
+  <h1>Landing page em português — iPhone</h1>
+  <p>O site responsivo renderizado em largura de celular (390&nbsp;px). Role dentro do aparelho para navegar.</p>
+  <a class="open" href="Landing Page BR.html" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M7 7h10v10"/></svg>
+    Abrir em tela cheia
+  </a>
+</div>
+
+<div class="phone">
+  <div class="island"></div>
+  <div class="screen">
+    <div class="status">
+      <span>9:41</span>
+      <span class="right">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 16h3v5H2zM7 12h3v9H7zM12 8h3v13h-3zM17 4h3v17h-3z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4C7 4 3 7 1 11l11 9 11-9c-2-4-6-7-11-7z" opacity=".25"/><path d="M12 4C9 4 6.3 5 4 7l8 6 8-6c-2.3-2-5-3-8-3z"/></svg>
+        <span class="batt"></span>
+      </span>
+    </div>
+    <iframe src="Vortaris Mobile.html" title="Vortaris PT mobile"></iframe>
+    <div class="home-ind"></div>
+  </div>
+</div>
+
+</body>
+</html>
