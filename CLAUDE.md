@@ -45,3 +45,32 @@ fast and simple. Follow these rules unless explicitly told otherwise.
 ## Don't
 - Don't split into a separate "app" codebase until a real logged-in product exists.
 - Don't add filler sections or content without asking first.
+
+## Hosting & deployment
+- **This repo** (`arielfbgomes-droid/vortaris-landing`) is the source of truth for all landing pages.
+- Deployed via **Cloudflare Pages** (project: `vortaris-landing`) → live at **vortaris.co**
+- Auto-deploys on every push to `main`. No build step needed — files are served as-is.
+- **Do NOT edit** files in `arielfbgomes-droid/carteira-br/public/` for landing page work — that repo serves `app.vortaris.co` (the React app), not the marketing site.
+
+## Active landing page files (most up-to-date)
+| File | URL | Notes |
+|---|---|---|
+| `Landing Page.html` | vortaris.co/Landing%20Page | English desktop — **primary EN page** |
+| `landing-br.html` | vortaris.co/landing-br | Portuguese desktop — **primary PT page** |
+| `Vortaris Mobile EN.html` | vortaris.co/Vortaris%20Mobile%20EN | English mobile |
+| `Vortaris Mobile.html` | vortaris.co/Vortaris%20Mobile | Portuguese mobile |
+| `_worker.js` | — | Routes users by country + device |
+| `vortaris-mobile.css` | — | Shared stylesheet for both mobile pages |
+
+## ⚠️ Do NOT touch these files
+- `Landing Page BR.html` — old unused file, not linked anywhere active
+- Any file in `carteira-br/public/` — wrong repo for landing page work
+
+## Language toggle pairing (correct as of June 2026)
+- `Landing Page.html` PT button → `landing-br.html`
+- `landing-br.html` EN button → `Landing Page.html`
+- Mobile pages toggle between `Vortaris Mobile EN.html` ⇄ `Vortaris Mobile.html`
+
+## Button URLs
+- English page: Sign In → `https://app.vortaris.co/?signin=true&lang=en` | Start Free → `https://app.vortaris.co/?signup=true&lang=en`
+- Portuguese page: Entrar → `https://app.vortaris.co/?signin=true` | Comece grátis → `https://app.vortaris.co/?signup=true`
