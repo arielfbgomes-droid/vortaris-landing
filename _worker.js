@@ -30,12 +30,15 @@ export default {
       return Response.redirect(new URL(target, url.origin), 301);
     }
 
+    // /index.html — serve English desktop directly, no country redirect
+    if (url.pathname === '/index.html') {
+      if (isMobile) return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
+      return env.ASSETS.fetch(new URL('/index.html', url.origin).toString());
+    }
+
     // Mobile visiting desktop pages directly → redirect to correct mobile page
     if (isMobile && (url.pathname === '/landing-br' || url.pathname === '/landing-br.html')) {
       return Response.redirect(new URL('/Vortaris%20Mobile.html', url.origin), 302);
-    }
-    if (isMobile && url.pathname === '/index.html') {
-      return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
     }
 
     // Serve static assets normally
