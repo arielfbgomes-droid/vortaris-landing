@@ -16,6 +16,7 @@ export default {
         if (isMobile) {
           return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
         }
+        return env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request));
       }
     }
 
