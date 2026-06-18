@@ -15,7 +15,7 @@ export default {
       if (isMobile) {
         return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
       }
-      return env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request));
+      return env.ASSETS.fetch(new URL('/', url.origin).toString());
     }
 
     // Old archived URLs → redirect to correct active pages
@@ -31,7 +31,7 @@ export default {
     // /index.html — serve English desktop directly, no country redirect
     if (url.pathname === '/index.html') {
       if (isMobile) return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
-      return env.ASSETS.fetch(new URL('/index.html', url.origin).toString());
+      return env.ASSETS.fetch(new URL('/', url.origin).toString());
     }
 
     // Mobile visiting desktop pages directly → redirect to correct mobile page
