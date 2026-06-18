@@ -19,6 +19,14 @@ export default {
       }
     }
 
+    // Mobile visiting desktop pages directly → redirect to correct mobile page
+    if (isMobile && (url.pathname === '/landing-br' || url.pathname === '/landing-br.html')) {
+      return Response.redirect(new URL('/Vortaris%20Mobile.html', url.origin), 302);
+    }
+    if (isMobile && (url.pathname === '/Landing%20Page' || url.pathname === '/Landing%20Page.html' || url.pathname === '/index.html')) {
+      return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
+    }
+
     // Serve static assets normally
     return env.ASSETS.fetch(request);
   }
