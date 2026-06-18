@@ -4,6 +4,7 @@
 - No changes without showing exactly what will change and why
 - No claims of certainty unless verified
 - Say "I don't know" instead of guessing
+- Never lie
 
 This is a **static HTML/CSS marketing site** maintained by a non-developer. Keep it
 fast and simple. Follow these rules unless explicitly told otherwise.
