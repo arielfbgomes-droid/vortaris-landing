@@ -25,7 +25,7 @@ fast and simple. Follow these rules unless explicitly told otherwise.
   accents, layered card surfaces, the existing button styles.
 - Keep all language versions (EN / PT-BR) in sync in structure; copy can differ.
 - Preserve the language toggles and cross-page links between files. Current pairing:
-  `Landing Page.html` ⇄ `Landing Page BR.html` (desktop), `Vortaris Mobile EN.html`
+  `index.html` ⇄ `landing-br.html` (desktop), `Vortaris Mobile EN.html`
   ⇄ `Vortaris Mobile.html` (mobile). If you rename/delete a page, fix every toggle,
   iframe, and preview that points to it.
 
@@ -35,7 +35,7 @@ fast and simple. Follow these rules unless explicitly told otherwise.
   invisible when the file is opened directly.
 - Dark theme: mobile lives in the `[data-theme="dark"]` block of
   `vortaris-mobile.css` (covers both mobile pages); desktop lives in a
-  `[data-theme="dark"]` block inside `Landing Page.html`. Dark mode is **pure CSS**
+  `[data-theme="dark"]` block inside `index.html`. Dark mode is **pure CSS**
   driven by the `data-theme` attribute — never rely on cross-frame JS to paint a
   theme (it breaks under `file://`). The preview files load the real page with
   `?theme=dark`; an early inline script reads that flag and sets `data-theme`.
@@ -55,20 +55,20 @@ fast and simple. Follow these rules unless explicitly told otherwise.
 ## Active landing page files (most up-to-date)
 | File | URL | Notes |
 |---|---|---|
-| `Landing Page.html` | vortaris.co/Landing%20Page | English desktop — **primary EN page** |
+| `index.html` | vortaris.co/ | English desktop — **primary EN page** |
 | `landing-br.html` | vortaris.co/landing-br | Portuguese desktop — **primary PT page** |
 | `Vortaris Mobile EN.html` | vortaris.co/Vortaris%20Mobile%20EN | English mobile |
 | `Vortaris Mobile.html` | vortaris.co/Vortaris%20Mobile | Portuguese mobile |
-| `_worker.js` | — | Routes users by country + device |
+| `_worker.js` | — | Routes users by country + device. Mobile hitting desktop URLs also redirected. |
 | `vortaris-mobile.css` | — | Shared stylesheet for both mobile pages |
 
 ## ⚠️ Do NOT touch these files
-- `Landing Page BR.html` — old unused file, not linked anywhere active
+- `_archive/` — old unused files kept for reference only. Never edit or serve these.
 - Any file in `carteira-br/public/` — wrong repo for landing page work
 
 ## Language toggle pairing (correct as of June 2026)
-- `Landing Page.html` PT button → `landing-br.html`
-- `landing-br.html` EN button → `Landing Page.html`
+- `index.html` PT button → `landing-br.html`
+- `landing-br.html` EN button → `index.html`
 - Mobile pages toggle between `Vortaris Mobile EN.html` ⇄ `Vortaris Mobile.html`
 
 ## Button URLs
