@@ -4,7 +4,7 @@ export default {
     const ua = request.headers.get('user-agent') || '';
     const isMobile = /Mobile|Android|iPhone|iPad|iPod/i.test(ua);
     const url = new URL(request.url);
-    const isRoot = url.pathname === '/' || url.pathname === '/index.html';
+    const isRoot = url.pathname === '/';
 
     if (isRoot) {
       if (country === 'BR') {
