@@ -55,12 +55,16 @@ fast and simple. Follow these rules unless explicitly told otherwise.
 ## Active landing page files (most up-to-date)
 | File | URL | Notes |
 |---|---|---|
-| `index.html` | vortaris.co/ | English desktop — **primary EN page** |
+| `index.html` | vortaris.co/ | English desktop — served to non-BR visitors at root |
+| `en.html` | vortaris.co/en | English desktop — **EN toggle target for BR visitors**. Copy of `index.html`. |
 | `landing-br.html` | vortaris.co/landing-br | Portuguese desktop — **primary PT page** |
 | `Vortaris Mobile EN.html` | vortaris.co/Vortaris%20Mobile%20EN | English mobile |
 | `Vortaris Mobile.html` | vortaris.co/Vortaris%20Mobile | Portuguese mobile |
 | `_worker.js` | — | Routes users by country + device. Mobile hitting desktop URLs also redirected. |
 | `vortaris-mobile.css` | — | Shared stylesheet for both mobile pages |
+
+## ⚠️ index.html and en.html must always be kept in sync
+`en.html` exists because Cloudflare Pages' Pretty URLs feature redirects `/index.html` → `/` which loops BR visitors back to PT. Until that Cloudflare setting is disabled, `en.html` is the EN toggle target for BR visitors. **Any structural or content change to the English desktop page must be made in BOTH `index.html` and `en.html`.**
 
 ## ⚠️ Do NOT touch these files
 - `_archive/` — old unused files kept for reference only. Never edit or serve these.
@@ -68,7 +72,8 @@ fast and simple. Follow these rules unless explicitly told otherwise.
 
 ## Language toggle pairing (correct as of June 2026)
 - `index.html` PT button → `landing-br.html`
-- `landing-br.html` EN button → `index.html`
+- `en.html` PT button → `landing-br.html`
+- `landing-br.html` EN button → `en.html` (NOT `index.html` — see note above)
 - Mobile pages toggle between `Vortaris Mobile EN.html` ⇄ `Vortaris Mobile.html`
 
 ## Button URLs
