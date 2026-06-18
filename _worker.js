@@ -19,11 +19,21 @@ export default {
       }
     }
 
+    // Old archived URLs → redirect to correct active pages
+    if (url.pathname === '/Landing%20Page' || url.pathname === '/Landing%20Page.html') {
+      const target = isMobile ? '/Vortaris%20Mobile%20EN.html' : '/';
+      return Response.redirect(new URL(target, url.origin), 301);
+    }
+    if (url.pathname === '/Landing%20Page%20BR' || url.pathname === '/Landing%20Page%20BR.html') {
+      const target = isMobile ? '/Vortaris%20Mobile.html' : '/landing-br.html';
+      return Response.redirect(new URL(target, url.origin), 301);
+    }
+
     // Mobile visiting desktop pages directly → redirect to correct mobile page
     if (isMobile && (url.pathname === '/landing-br' || url.pathname === '/landing-br.html')) {
       return Response.redirect(new URL('/Vortaris%20Mobile.html', url.origin), 302);
     }
-    if (isMobile && (url.pathname === '/Landing%20Page' || url.pathname === '/Landing%20Page.html' || url.pathname === '/index.html')) {
+    if (isMobile && url.pathname === '/index.html') {
       return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
     }
 
