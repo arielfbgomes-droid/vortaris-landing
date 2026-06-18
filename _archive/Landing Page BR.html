@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script>
-/* Early theme bootstrap: honor ?theme=dark so the page paints dark with zero
-   dependence on cross-frame JS (works when opened directly from disk). */
-(function(){try{var p=new URLSearchParams(location.search);if(p.get('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');window.__FORCE_THEME='dark';}}catch(e){}})();
-</script>
-<title>Vortaris — Global Portfolio Intelligence</title>
+<title>Vortaris — Inteligência Global de Portfólio</title>
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Vortaris" />
-<meta property="og:locale" content="en_US" />
-<meta property="og:url" content="https://vortaris.co/" />
-<meta property="og:title" content="Vortaris — Global Portfolio Intelligence" />
-<meta property="og:description" content="See your portfolio the way institutions do. Stocks, crypto and ETFs from Brazil and around the world, with a quant engine tuned to your risk profile." />
-<meta property="og:image" content="https://vortaris.co/og/og-vortaris-dashboard-en.png" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:title" content="Vortaris — Inteligência Global de Portfólio" />
+<meta property="og:description" content="Veja sua carteira como as instituições veem. Ações, cripto e ETFs do Brasil e do mundo, com um motor quantitativo afinado ao seu perfil de risco." />
+<meta property="og:image" content="https://vortaris.co/og/og-vortaris-dashboard.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Vortaris dashboard: portfolio, return and Risk DNA." />
+<meta property="og:image:alt" content="Painel Vortaris: carteira, retorno e Risk DNA." />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Vortaris — Global Portfolio Intelligence" />
-<meta name="twitter:description" content="See your portfolio the way institutions do." />
-<meta name="twitter:image" content="https://vortaris.co/og/og-vortaris-dashboard-en.png" />
+<meta name="twitter:title" content="Vortaris — Inteligência Global de Portfólio" />
+<meta name="twitter:description" content="Veja sua carteira como as instituições veem." />
+<meta name="twitter:image" content="https://vortaris.co/og/og-vortaris-dashboard.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -51,24 +45,6 @@
   --maxw: 1180px;
   --radius: 18px;
   --radius-sm: 12px;
-}
-/* Dark palette as pure CSS — no JS required. Mirrors the JS DARK object. */
-[data-theme="dark"]{
-  --bg: #0a0c10;
-  --bg-soft: #11141b;
-  --bg-soft-2: #1b202a;
-  --ink: #f2f5f9;
-  --ink-2: #99a2b0;
-  --ink-3: #646d7c;
-  --line: #23272f;
-  --line-2: #31363f;
-  --card: #151921;
-  --accent: #5e8bff;
-  --on-ink: #0a0c10;
-  --invert-bg: #12161d;
-  --invert-fg: #f2f5f9;
-  --c-blue:#5e9bff; --c-orange:#fbb33d; --c-green:#36d39a;
-  --c-pink:#f472b6; --c-purple:#a78bfa; --c-red:#f87171; --c-teal:#2dd4bf;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -441,76 +417,12 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 .foot-compliance span{font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:0.03em;display:flex;align-items:center;gap:6px;}
 .foot-compliance svg{width:13px;height:13px;}
 .foot-copy{font-size:12.5px;color:var(--ink-3);}
+.foot-disclaimer{width:100%;border-top:1px solid var(--line);margin-top:20px;padding-top:18px;font-size:11.5px;line-height:1.55;color:var(--ink-3);max-width:760px;}
 
 /* reveal — visible by default; hidden-then-animate only when html.anim is set.
    Transition lives under .anim so removing the class leaves nothing to freeze. */
 .anim .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
 .anim .reveal.in{opacity:1;transform:none;}
-
-/* ---------- premium dark theme polish ---------- */
-[data-theme="dark"] body{
-  background:
-    radial-gradient(1100px 520px at 50% -8%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 62%),
-    var(--bg);
-}
-/* layered cards: subtle top highlight so surfaces read as raised, not flat */
-[data-theme="dark"] .mc,
-[data-theme="dark"] .alloc,
-[data-theme="dark"] .mock-chart,
-[data-theme="dark"] .metric,
-[data-theme="dark"] .profile,
-[data-theme="dark"] .cov-card,
-[data-theme="dark"] .priv-card,
-[data-theme="dark"] .intel-block,
-[data-theme="dark"] .scan-row,
-[data-theme="dark"] .upopt,
-[data-theme="dark"] .an-card{
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
-}
-[data-theme="dark"] .mock-frame{
-  box-shadow:
-    0 0 0 1px var(--line),
-    0 40px 90px -42px rgba(0,0,0,.8),
-    inset 0 1px 0 rgba(255,255,255,.05);
-}
-[data-theme="dark"] .intel-panel{
-  box-shadow:
-    0 40px 90px -55px rgba(0,0,0,.85),
-    inset 0 1px 0 rgba(255,255,255,.04);
-}
-[data-theme="dark"] .mock-dot{background:#363c47;}
-/* sober dark eyebrows/labels/icons — drop the blue on text & trust marks */
-[data-theme="dark"] .eyebrow{color:var(--ink-2);}
-[data-theme="dark"] .step-num{color:var(--ink-2);}
-[data-theme="dark"] .trust-item svg{color:var(--ink-2);}
-/* premium primary: crisp white with a soft lift + glow, never flat */
-[data-theme="dark"] .btn-primary{
-  background:linear-gradient(180deg,#ffffff,#e8eaef);
-  color:#0a0c10;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 8px 22px -10px rgba(0,0,0,.85);
-}
-[data-theme="dark"] .btn-primary:hover{
-  transform:translateY(-1px);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.7), 0 16px 34px -12px rgba(0,0,0,.95);
-}
-/* ghost button gets a faint fill so its edge reads against the dark page */
-[data-theme="dark"] .btn-ghost{
-  background:rgba(255,255,255,.025);
-  border-color:var(--line-2);
-}
-[data-theme="dark"] .btn-ghost:hover{
-  background:rgba(255,255,255,.06);
-  border-color:var(--ink-3);
-}
-[data-theme="dark"] header.nav.scrolled{
-  background:color-mix(in srgb, var(--bg) 70%, transparent);
-}
-/* keep the inverted bands distinct from the page with hairline edges */
-[data-theme="dark"] .privacy,
-[data-theme="dark"] .metrics-band{
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
 
 /* ---------- responsive ---------- */
 @media(max-width:1000px){
@@ -553,18 +465,18 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
       </div>
     </a>
     <nav class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#quant">Quant engine</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#coverage">Coverage</a>
+      <a href="#how">Como funciona</a>
+      <a href="#quant">Quant Engine</a>
+      <a href="#privacy">Privacidade</a>
+      <a href="#coverage">Cobertura</a>
     </nav>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="on">EN</button>
-        <button onclick="location.href='landing-br.html'">PT</button>
+        <button onclick="location.href='Landing Page.html'">EN</button>
+        <button class="on">PT</button>
       </div>
-      <span class="nav-signin" onclick="location.href='https://app.vortaris.co/?signin=true&lang=en'">Sign in</span>
-      <a class="btn btn-primary" href="https://app.vortaris.co/?signup=true&lang=en">Start free</a>
+      <span class="nav-signin">Entrar</span>
+      <a class="btn btn-primary" href="#start">Comece grátis</a>
     </div>
   </div>
 </header>
@@ -575,25 +487,25 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-      <span class="eyebrow">Global Portfolio Intelligence</span>
-      <h1 id="hero-headline">See your portfolio the way <span class="muted">institutions do.</span></h1>
-      <p class="lead" style="width: 600px">Track, analyze, and rebalance your stocks, ETFs, crypto, and global assets with a quant engine tuned to your risk profile. Set up in seconds, just upload a screenshot.</p>
+      <span class="eyebrow">Inteligência Global de Portfólio</span>
+      <h1 id="hero-headline">Veja sua carteira como <span class="muted">as instituições veem.</span></h1>
+      <p class="lead">Seu patrimônio global unificado em segundos. Zero corretagem, total transparência. Monitore a volatilidade e simule cenários para suas ações, cripto e ETFs globais com a tecnologia Quant Engine.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-lg" href="https://app.vortaris.co/?signup=true&lang=en">Start free</a>
-        <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+        <a class="btn btn-primary btn-lg" href="#start">Comece grátis</a>
+        <a class="btn btn-ghost btn-lg" href="#how">Veja como funciona</a>
       </div>
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-          Bank-grade encryption
+          Criptografia de nível bancário
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>
-          Privacy first
+          Privacidade em primeiro lugar
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>
-          We store only your name &amp; email
+          Guardamos só seu nome e e-mail
         </div>
       </div>
     </div>
@@ -612,31 +524,31 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
           </a>
           <nav class="mock-nav">
             <a class="active"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Dashboard</a>
-            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14h2"/></svg></span>Holdings</a>
-            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 18 10 11l4 4 6-7"/><path d="M20 8v4h-4"/></svg></span>Returns</a>
-            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>Correlation</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 14h2"/></svg></span>Carteira</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 18 10 11l4 4 6-7"/><path d="M20 8v4h-4"/></svg></span>Retorno</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></span>Correlação</a>
             <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>Quant Engine</a>
-            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg></span>Securities Risk</a>
+            <a><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg></span>Risco por Ativo</a>
           </nav>
         </aside>
         <div class="mock-main">
           <div class="mock-cards">
             <div class="mc">
-              <div class="k">Total Invested</div>
+              <div class="k">Total Investido</div>
               <div class="v">$1,604,370</div>
-              <div class="chg up">▲ +1.24% today</div>
+              <div class="chg up">▲ +1,24% hoje</div>
             </div>
             <div class="mc">
-              <div class="k">Annual Return · CAGR</div>
+              <div class="k">Retorno Anual · CAGR</div>
               <div class="v">27.39%</div>
-              <div class="chg up">▲ +$374,313 total</div>
+              <div class="chg up">▲ +US$ 374.313 total</div>
             </div>
             <div class="mc">
-              <div class="k" style="display:flex;align-items:center;justify-content:space-between">Risk DNA <span class="dna-tag">Good · 66</span></div>
+              <div class="k" style="display:flex;align-items:center;justify-content:space-between">Risk DNA <span class="dna-tag">Bom · 66</span></div>
               <div class="dna" style="margin-top:8px">
                 <div class="dna-ring"><span class="dna-num">66</span></div>
                 <div class="dna-bars">
-                  <div class="dna-bar"><span class="lab">Return</span><span class="track"><span class="fill" style="width:88%;background:var(--c-green)"></span></span><span class="num">88</span></div>
+                  <div class="dna-bar"><span class="lab">Retorno</span><span class="track"><span class="fill" style="width:88%;background:var(--c-green)"></span></span><span class="num">88</span></div>
                   <div class="dna-bar"><span class="lab">Volat.</span><span class="track"><span class="fill" style="width:72%;background:var(--c-orange)"></span></span><span class="num">72</span></div>
                   <div class="dna-bar"><span class="lab">Divers.</span><span class="track"><span class="fill" style="width:58%;background:var(--c-orange)"></span></span><span class="num">58</span></div>
                   <div class="dna-bar"><span class="lab">Geo</span><span class="track"><span class="fill" style="width:30%;background:var(--c-red)"></span></span><span class="num">30</span></div>
@@ -647,7 +559,7 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
           <div class="mock-row">
             <div class="mock-chart">
               <div class="hd">
-                <span class="mono-label">Cumulative Return — Portfolio vs Benchmarks</span>
+                <span class="mono-label">Retorno Acumulado — Carteira vs Benchmarks</span>
                 <div class="chart-tabs"><span>1M</span><span>6M</span><span class="on">1Y</span><span>5Y</span></div>
               </div>
               <svg class="chart-svg" viewBox="0 0 600 150" preserveAspectRatio="none" style="width:100%;height:150px">
@@ -664,16 +576,16 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
             </div>
             <div class="alloc">
               <div class="hd">
-                <span class="mono-label">Allocation</span>
-                <div class="alloc-toggle"><span>Asset</span><span class="on">Sector</span></div>
+                <span class="mono-label">Alocação</span>
+                <div class="alloc-toggle"><span>Ativo</span><span class="on">Setor</span></div>
               </div>
               <div class="donut"></div>
               <div class="alloc-legend">
                 <div class="row"><span class="d" style="background:var(--c-green)"></span><span class="nm">Total Market</span><span class="pct">39.4%</span></div>
-                <div class="row"><span class="d" style="background:var(--c-purple)"></span><span class="nm">Dividend</span><span class="pct">33.0%</span></div>
-                <div class="row"><span class="d" style="background:var(--c-blue)"></span><span class="nm">Income</span><span class="pct">18.2%</span></div>
-                <div class="row"><span class="d" style="background:var(--c-orange)"></span><span class="nm">Technology</span><span class="pct">5.3%</span></div>
-                <div class="row"><span class="d" style="background:var(--c-pink)"></span><span class="nm">International</span><span class="pct">3.3%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-purple)"></span><span class="nm">Dividendos</span><span class="pct">33.0%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-blue)"></span><span class="nm">Renda</span><span class="pct">18.2%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-orange)"></span><span class="nm">Tecnologia</span><span class="pct">5.3%</span></div>
+                <div class="row"><span class="d" style="background:var(--c-pink)"></span><span class="nm">Internacional</span><span class="pct">3.3%</span></div>
               </div>
             </div>
           </div>
@@ -681,7 +593,7 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
             <div class="metric"><div class="k">Sharpe</div><div class="v">1.69</div></div>
             <div class="metric"><div class="k">Sortino</div><div class="v">2.51</div></div>
             <div class="metric"><div class="k">Max Drawdown</div><div class="v" style="color:var(--c-red)">−7.85%</div></div>
-            <div class="metric"><div class="k">Volatility</div><div class="v">11.07%</div></div>
+            <div class="metric"><div class="k">Volatilidade</div><div class="v">11.07%</div></div>
           </div>
         </div>
       </div>
@@ -691,13 +603,13 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
   <!-- coverage strip -->
   <div class="strip reveal">
     <div class="wrap strip-inner">
-      <span class="lbl">One platform, every market</span>
+      <span class="lbl">Uma plataforma, todos os mercados</span>
       <div class="markets">
-        <span class="mk"><span class="d" style="background:var(--c-orange)"></span>Crypto</span>
-        <span class="mk"><span class="d" style="background:var(--c-blue)"></span>US Equities &amp; ETFs</span>
-        <span class="mk"><span class="d" style="background:var(--c-green)"></span>Global Markets</span>
-        <span class="mk"><span class="d" style="background:var(--c-purple)"></span>B3 Stocks</span>
-        <span class="mk"><span class="d" style="background:var(--c-pink)"></span>Treasuries</span>
+        <span class="mk"><span class="d" style="background:var(--c-orange)"></span>Cripto</span>
+        <span class="mk"><span class="d" style="background:var(--c-blue)"></span>Ações e ETFs dos EUA</span>
+        <span class="mk"><span class="d" style="background:var(--c-green)"></span>Mercados globais</span>
+        <span class="mk"><span class="d" style="background:var(--c-purple)"></span>Ações B3</span>
+        <span class="mk"><span class="d" style="background:var(--c-pink)"></span>Tesouro</span>
       </div>
     </div>
   </div>
@@ -707,38 +619,38 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <section class="block how" id="how">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Setup in under a minute</span>
-      <h2>The easiest way to bring your portfolio in.</h2>
-      <p class="lead">No account credentials. No spreadsheets. No manual entry. Drop a screenshot and Vortaris does the rest.</p>
+      <span class="eyebrow">Configuração em menos de um minuto</span>
+      <h2>O jeito mais fácil de trazer sua carteira.</h2>
+      <p class="lead">Sem credenciais de conta. Sem planilhas. Sem digitação manual. Upload o print e a Vortaris faz o resto.</p>
     </div>
     <div class="steps">
       <div class="step reveal">
-        <div class="step-num">STEP 01</div>
+        <div class="step-num">PASSO 01</div>
         <div class="step-visual">
           <div class="upload-vis">
             <div class="upopt hot">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h0a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="12.5" r="3.2"/></svg></div>
-              <div><div class="t1">Photo of your portfolio</div><div class="t2">Snap your statement</div></div>
+              <div><div class="t1">Foto da sua carteira</div><div class="t2">Fotografe seu extrato</div></div>
               <span class="arr">›</span>
             </div>
             <div class="upopt">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="9" r="1.6"/><path d="m4 18 5-5 4 4 3-3 4 4"/></svg></div>
-              <div><div class="t1">Upload an image</div><div class="t2">PNG · JPG · PDF</div></div>
+              <div><div class="t1">Envie uma imagem</div><div class="t2">PNG · JPG · PDF</div></div>
               <span class="arr">›</span>
             </div>
             <div class="upopt">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg></div>
-              <div><div class="t1">Import a CSV</div><div class="t2">Exported from your broker</div></div>
+              <div><div class="t1">Importe um CSV</div><div class="t2">Exportado da sua corretora</div></div>
               <span class="arr">›</span>
             </div>
-            <div class="up-priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Analyzed &amp; discarded — never saved</div>
+            <div class="up-priv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Analisado e descartado — nunca salvo</div>
           </div>
         </div>
-        <h3>Snap, upload, or import</h3>
-        <p>Take a photo of your statement, upload a PNG, JPG or PDF, or import a CSV from your broker. Images are analyzed and discarded on the spot — never stored.</p>
+        <h3>Fotografe, envie ou importe</h3>
+        <p>Tire uma foto do seu extrato, envie um PNG, JPG ou PDF, ou importe um CSV da sua corretora. As imagens são analisadas e descartadas na hora — nunca armazenadas.</p>
       </div>
       <div class="step reveal" style="transition-delay:.08s">
-        <div class="step-num">STEP 02</div>
+        <div class="step-num">PASSO 02</div>
         <div class="step-visual">
           <div class="scan-vis">
             <div class="scan-row"><span class="d" style="background:var(--c-blue)"></span><div><div class="tk">VTI</div><div class="nm">Vanguard Total Stock</div></div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
@@ -746,25 +658,25 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
             <div class="scan-row"><span class="d" style="background:var(--c-purple)"></span><div><div class="tk">BTC</div><div class="nm">Bitcoin</div></div><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span></div>
           </div>
         </div>
-        <h3>We identify your assets</h3>
-        <p>Our proprietary scanner reads every ticker, quantity, and price — matching positions across crypto, US, global, and Brazilian markets automatically.</p>
+        <h3>Identificamos seus ativos</h3>
+        <p>Nosso scanner proprietário lê cada ticker, quantidade e preço — reconhecendo posições em cripto, EUA, mercados globais e brasileiros automaticamente.</p>
       </div>
       <div class="step reveal" style="transition-delay:.16s">
-        <div class="step-num">STEP 03</div>
+        <div class="step-num">PASSO 03</div>
         <div class="step-visual">
           <div class="an-vis">
             <div class="an-card">
-              <div class="k">Portfolio Analysis</div>
+              <div class="k">Análise da Carteira</div>
               <div class="an-bars">
                 <div class="an-bar"><span class="lab">Diversif.</span><span class="track"><span class="fill" style="width:45%;background:var(--c-orange)"></span></span><span class="pct">45</span></div>
-                <div class="an-bar"><span class="lab">Risk</span><span class="track"><span class="fill" style="width:72%;background:var(--c-green)"></span></span><span class="pct">72</span></div>
-                <div class="an-bar"><span class="lab">Income</span><span class="track"><span class="fill" style="width:62%;background:var(--c-blue)"></span></span><span class="pct">62</span></div>
+                <div class="an-bar"><span class="lab">Risco</span><span class="track"><span class="fill" style="width:72%;background:var(--c-green)"></span></span><span class="pct">72</span></div>
+                <div class="an-bar"><span class="lab">Renda</span><span class="track"><span class="fill" style="width:62%;background:var(--c-blue)"></span></span><span class="pct">62</span></div>
               </div>
             </div>
           </div>
         </div>
-        <h3>Get institutional analysis</h3>
-        <p>Risk, correlation, returns, and a tailored rebalance — generated in seconds. The depth a desk gets, in plain language you can act on.</p>
+        <h3>Visualize uma análise educacional</h3>
+        <p>Risco, correlação e retornos históricos, além de cenários hipotéticos de realocação — calculados em segundos. A profundidade de uma mesa de operações, em linguagem clara para você entender e explorar.</p>
       </div>
     </div>
   </div>
@@ -774,37 +686,37 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <section class="privacy" id="privacy">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Privacy is the foundation</span>
-      <h2>We collect your first name and email. <em>Nothing else.</em></h2>
-      <p class="lead">No phone numbers. No documents. No selling your data — ever. Vortaris is built so the only thing we ever know about you is how to say hello.</p>
+      <span class="eyebrow">Privacidade é a base</span>
+      <h2>Coletamos seu primeiro nome e e-mail. <em>Nada além disso.</em></h2>
+      <p class="lead">Sem telefone. Sem documentos. Sem vender seus dados — jamais. A Vortaris foi feita para que a única coisa que saibamos sobre você seja como dizer olá.</p>
     </div>
     <div class="priv-grid">
       <div class="priv-card reveal">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg></div>
-        <h3>Name &amp; email only</h3>
-        <p>The entire account is a first name and an email address. We never ask for anything we don't need.</p>
+        <h3>Só nome e e-mail</h3>
+        <p>A conta inteira é um primeiro nome e um endereço de e-mail. Nunca pedimos nada de que não precisamos.</p>
       </div>
       <div class="priv-card reveal" style="transition-delay:.06s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><path d="M12 2v10"/></svg></div>
-        <h3>We never sell data</h3>
-        <p>Your holdings are yours. We don't sell, share, or monetize your information with anyone. It is non-negotiable.</p>
+        <h3>Nunca vendemos dados</h3>
+        <p>Suas posições são suas. Não vendemos, compartilhamos nem monetizamos suas informações com ninguém. É inegociável.</p>
       </div>
       <div class="priv-card reveal" style="transition-delay:.12s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1M6 8H5a4 4 0 0 0 0 8h1M9 12h6"/><path d="m4 4 16 16"/></svg></div>
-        <h3>No credentials, ever</h3>
-        <p>We never ask for your brokerage login or password. Nothing connects to your accounts — you simply upload a screenshot or statement.</p>
+        <h3>Sem credenciais, nunca</h3>
+        <p>Nunca pedimos o login ou a senha da sua corretora. Nada se conecta às suas contas — você apenas envia um print ou extrato.</p>
       </div>
       <div class="priv-card reveal" style="transition-delay:.18s">
         <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
-        <h3>Images are never saved</h3>
-        <p>Statement photos and uploads are analyzed to read your positions, then discarded on the spot. AES-256 encryption throughout.</p>
+        <h3>Imagens nunca são salvas</h3>
+        <p>Fotos de extratos e envios são analisados para ler suas posições e descartados na hora. Criptografia AES-256 de ponta a ponta.</p>
       </div>
     </div>
     <div class="priv-note reveal">
-      <span><span class="dot"></span>End-to-end encryption</span>
-      <span><span class="dot"></span>LGPD compliant</span>
-      <span><span class="dot"></span>GDPR compliant</span>
-      <span><span class="dot"></span>No third-party trackers selling your data</span>
+      <span><span class="dot"></span>Criptografia ponta a ponta</span>
+      <span><span class="dot"></span>Em conformidade com a LGPD</span>
+      <span><span class="dot"></span>Em conformidade com o GDPR</span>
+      <span><span class="dot"></span>Sem rastreadores de terceiros vendendo seus dados</span>
     </div>
   </div>
 </section>
@@ -813,55 +725,56 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <section class="block quant" id="quant">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">The quant engine</span>
-      <h2>A proprietary engine that thinks in risk, not noise.</h2>
-      <p class="lead">Vortaris analyzes your portfolio and rebalances it to your chosen risk profile — combining proprietary quantitative algorithms with AI intelligence. Pick a profile and see the projected impact instantly.</p>
+      <span class="eyebrow">QUANT ENGINE</span>
+      <h2>Um motor proprietário que pensa em risco, não em ruído.</h2>
+      <p class="lead">A Vortaris analisa sua carteira e simula como ela se distribuiria em diferentes perfis de risco, combinando algoritmos quantitativos proprietários com inteligência de IA. Escolha um perfil e explore o cenário em instantes.</p>
     </div>
     <div class="profiles">
       <div class="profile reveal">
         <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
-        <h3>Fortress</h3>
-        <p>Capital preservation, minimal drawdowns.</p>
+        <h3>Fortaleza</h3>
+        <p>Foco em preservação de capital e baixa oscilação.</p>
       </div>
       <div class="profile sel reveal" style="transition-delay:.05s">
         <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg></div>
-        <h3>Strategic Income</h3>
-        <p>Steady income with growth exposure.</p>
+        <h3>Renda Estratégica</h3>
+        <p>Equilíbrio entre geração de renda e crescimento.</p>
       </div>
       <div class="profile reveal" style="transition-delay:.1s">
         <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></div>
-        <h3>Global Macro</h3>
-        <p>Global diversification, macro resilience.</p>
+        <h3>Macro Global</h3>
+        <p>Diversificação global, resiliência macro.</p>
       </div>
       <div class="profile reveal" style="transition-delay:.15s">
         <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
         <h3>Momentum</h3>
-        <p>Capture upward trends.</p>
+        <p>Exposição a tendências de mercado.</p>
       </div>
       <div class="profile reveal" style="transition-delay:.2s">
         <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-        <h3>Frontier</h3>
-        <p>High-conviction bets, asymmetric upside.</p>
+        <h3>Fronteira</h3>
+        <p>Perfil de maior risco e maior oscilação.</p>
       </div>
     </div>
     <div class="impact reveal">
       <div class="it">
-        <div class="k">Diversification Score</div>
+        <div class="k">Índice de Diversificação</div>
         <div class="flow"><span class="from">42</span><span class="arrow">→</span><span class="to g">45</span></div>
       </div>
       <div class="it">
-        <div class="k">Expected Volatility</div>
+        <div class="k">Volatilidade Simulada</div>
         <div class="flow"><span class="from">12.6%</span><span class="arrow">→</span><span class="to o">13.3%</span></div>
       </div>
       <div class="it">
-        <div class="k">Passive Income · Yield</div>
+        <div class="k">Renda Passiva · Yield</div>
         <div class="flow"><span class="from">3.49%</span><span class="arrow">→</span><span class="to g">4.10%</span></div>
       </div>
       <div class="it">
-        <div class="k">Est. Annual Income</div>
+        <div class="k">Renda Anual Simulada</div>
         <div class="flow"><span class="from">$54.6k</span><span class="arrow">→</span><span class="to g">$64.1k</span></div>
       </div>
     </div>
+    <p class="reveal" style="font-family:var(--mono);font-size:11px;letter-spacing:0.03em;color:var(--ink-3);margin-top:20px;line-height:1.55;max-width:640px">Valores de simulação, para fins educacionais. Rentabilidade passada não garante resultados futuros.</p>
   </div>
 </section>
 
@@ -870,59 +783,59 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">✦ Vortaris Intelligence</span>
-      <h2>It doesn't just rebalance. It tells you why.</h2>
-      <p class="lead">Vortaris Intelligence is the proprietary layer that reads your entire portfolio — risk, correlation, concentration, income — and explains it in plain language. Every rebalance comes with the reasoning behind each move, so you're never asked to trust a black box.</p>
+      <h2>Não recomenda. Explica o porquê dos números.</h2>
+      <p class="lead">A Vortaris Intelligence é a camada proprietária que lê toda a sua carteira, risco, correlação, concentração, renda, e explica em linguagem clara, para fins educacionais. Cada cenário hipotético vem com o raciocínio por trás dos números, permitindo que tome decisões com maior clareza. </p>
     </div>
 
     <div class="intel-panel reveal">
       <div class="intel-bar">
         <div class="intel-brand"><span class="star">✦</span> Vortaris Intelligence</div>
-        <span class="intel-analyze">✦ Analyze</span>
+        <span class="intel-analyze">✦ Analisar</span>
       </div>
       <div class="intel-body">
         <div class="intel-block">
-          <div class="k">Overall Assessment</div>
-          <p>This portfolio is heavily concentrated in US large-cap equities and high-dividend strategies, with moderate international diversification through VXUS and VYMI. The tilt toward yield-oriented funds increases interest-rate and sector-concentration risk, while the absence of bonds raises overall volatility.</p>
-          <div class="intel-disc">A general analysis generated by AI for educational purposes. Not investment advice.</div>
+          <div class="k">Avaliação Geral</div>
+          <p>Esta carteira está fortemente concentrada em ações large-cap dos EUA e estratégias de altos dividendos, com diversificação internacional moderada via VXUS e VYMI. A inclinação para fundos voltados a rendimento aumenta o risco de taxa de juros e de concentração setorial, enquanto a ausência de renda fixa eleva a volatilidade geral.</p>
+          <div class="intel-disc">Uma análise geral gerada por IA para fins educacionais. Não é recomendação de investimento.</div>
         </div>
 
         <div class="intel-block">
-          <div class="k">Why this rebalance — the reasoning</div>
+          <div class="k">Como o cenário é construído — o raciocínio</div>
           <div class="reason-list">
-            <p class="reason"><strong>AMLP and JEPI are the primary drivers.</strong> Both offer distributions well above your current 3.49% yield, lifting projected income while keeping the portfolio inside your Strategic Income profile.</p>
-            <p class="reason"><strong>Trimming VTI, VOO and VYM removes redundancy.</strong> You already hold similar large-cap exposure through VYMI and GPIQ — at +0.99 correlation, they move in lockstep, so freeing that capital improves diversification without sacrificing the core.</p>
-            <p class="reason"><strong>The trade-off is explicit.</strong> Expected yield climbs from 3.49% to 4.10% — roughly $9,500 more a year — but volatility rises from 12.6% to 13.3%. Implement gradually over 4–6 weeks to manage timing risk.</p>
+            <p class="reason"><strong>No cenário simulado, AMLP e JEPI têm o maior peso.</strong> Historicamente distribuem acima do yield atual de 3,49%, o que, na simulação, elevaria a renda hipotética dentro do perfil de Renda Estratégica.</p>
+            <p class="reason"><strong>O cenário ilustra menor peso em VTI, VOO e VYM por redundância.</strong> A exposição large-cap se sobrepõe à de VYMI e GPIQ — com correlação de +0,99, esses ativos se movem juntos. É o que os dados mostram.</p>
+            <p class="reason"><strong>O trade-off é explícito.</strong> Na simulação, o yield hipotético vai de 3,49% para 4,10% e a volatilidade, de 12,6% para 13,3%. São valores estimados, para fins educacionais.</p>
           </div>
         </div>
 
         <div class="intel-verdicts">
           <div class="verdict good">
-            <span class="lab">Strength</span>
+            <span class="lab">Característica</span>
             <div class="tk">VTI</div>
-            <p>Comprehensive US market coverage and a low expense ratio make it a stable, efficient core that captures long-term equity returns.</p>
+            <p>Cobertura ampla do mercado americano e taxa baixa. Historicamente, costuma figurar como um componente de base em carteiras diversificadas.</p>
           </div>
           <div class="verdict watch">
-            <span class="lab">Watch</span>
+            <span class="lab">Ponto de atenção</span>
             <div class="tk">VYMI</div>
-            <p>As an international high-dividend fund, it's exposed to currency swings and global growth — worth monitoring if the dollar strengthens.</p>
+            <p>Como fundo internacional de altos dividendos, está exposto a oscilações cambiais e ao crescimento global — vale monitorar se o dólar se fortalecer.</p>
           </div>
         </div>
-        <div class="intel-foot">Generated in seconds · Re-run anytime · Not investment advice</div>
+        <div class="intel-foot">Gerado em segundos · Conteúdo educacional · Não é recomendação de investimento</div>
       </div>
     </div>
 
     <div class="intel-feats">
       <div class="intel-feat reveal">
-        <h4><span class="s">✦</span> Reads the whole picture</h4>
-        <p>Risk, correlation, concentration, geography and income — analyzed together, not one chart at a time.</p>
+        <h4><span class="s">✦</span> Lê o quadro completo</h4>
+        <p>Risco, correlação, concentração, geografia e renda — analisados em conjunto, não um gráfico de cada vez.</p>
       </div>
       <div class="intel-feat reveal" style="transition-delay:.07s">
-        <h4><span class="s">✦</span> Explains every move</h4>
-        <p>Each proposed position change comes with the reasoning, the trade-off, and how to implement it.</p>
+        <h4><span class="s">✦</span> Explica cada número</h4>
+        <p>Cada mudança no cenário simulado vem com o raciocínio e o trade-off por trás dela, para você entender a lógica.</p>
       </div>
       <div class="intel-feat reveal" style="transition-delay:.14s">
-        <h4><span class="s">✦</span> Plain language, not jargon</h4>
-        <p>Institutional-grade depth, written so any investor can act on it with confidence.</p>
+        <h4><span class="s">✦</span> Linguagem clara, sem jargão</h4>
+        <p>Profundidade de nível institucional, escrita para que qualquer pessoa entenda os dados com clareza.</p>
       </div>
     </div>
   </div>
@@ -932,33 +845,33 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <section class="block coverage" id="coverage">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">One platform. Every market.</span>
-      <h2>Crypto, US &amp; global equities, and all of B3.</h2>
-      <p class="lead">Built for Brazilian investors going global — and global investors who want everything in one view.</p>
+      <span class="eyebrow">Uma plataforma. Todos os mercados.</span>
+      <h2>Cripto, ações dos EUA e globais, e toda a B3.</h2>
+      <p class="lead">Desenhado para o investidor local que rompeu fronteiras e para o investidor global que exige uma visão unificada. Rompa a barreira das moedas e das corretoras. Tenha o controle absoluto do seu patrimônio em uma única tela.</p>
     </div>
     <div class="cov-grid">
       <div class="cov-card reveal">
         <div class="ch" style="background:var(--c-orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2.5 2.5 0 0 1 0 5h-4zm0 5h4.5a2.5 2.5 0 0 1 0 5H9.5zM11 6v2m0 10v2"/></svg></div>
-        <h3>Crypto</h3>
-        <p>Track digital assets alongside everything else — no separate app.</p>
+        <h3>Cripto</h3>
+        <p>Acompanhe ativos digitais junto com tudo o mais — sem app separado.</p>
         <div class="cov-tags"><span>BTC</span><span>ETH</span><span>SOL</span><span>+ majors</span></div>
       </div>
       <div class="cov-card reveal" style="transition-delay:.06s">
         <div class="ch" style="background:var(--c-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></div>
-        <h3>US &amp; Global Equities</h3>
-        <p>Stocks and ETFs across Nasdaq, NYSE, and major world exchanges.</p>
+        <h3>Ações dos EUA e Globais</h3>
+        <p>Ações e ETFs na Nasdaq, NYSE e nas principais bolsas do mundo.</p>
         <div class="cov-tags"><span>VTI</span><span>VOO</span><span>SMH</span><span>VXUS</span></div>
       </div>
       <div class="cov-card reveal" style="transition-delay:.12s">
         <div class="ch" style="background:var(--c-purple)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V9m5 11V4m5 16v-8m5 8V7"/></svg></div>
-        <h3>Brazilian Stocks &amp; ETFs</h3>
-        <p>Full B3 coverage — ações, BDRs, and listed funds in one place.</p>
+        <h3>Ações e ETFs Brasileiros</h3>
+        <p>Cobertura completa da B3 — ações, BDRs e fundos listados em um só lugar.</p>
         <div class="cov-tags"><span>PETR4</span><span>VALE3</span><span>BOVA11</span></div>
       </div>
       <div class="cov-card reveal" style="transition-delay:.18s">
         <div class="ch" style="background:var(--c-green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg></div>
-        <h3>Treasuries</h3>
-        <p>Government bonds and Tesouro Direto, weighted into your full picture.</p>
+        <h3>Tesouro</h3>
+        <p>Títulos públicos e Tesouro Direto, ponderados no seu quadro completo.</p>
         <div class="cov-tags"><span>Tesouro</span><span>Selic</span><span>IPCA+</span></div>
       </div>
     </div>
@@ -970,18 +883,18 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
   <div class="wrap">
     <div class="top reveal">
       <div>
-        <span class="eyebrow">Institutional depth</span>
-        <h2>The metrics a desk runs — in your pocket.</h2>
+        <span class="eyebrow">Profundidade institucional</span>
+        <h2>As métricas de uma mesa de operações — no seu bolso.</h2>
       </div>
-      <p class="lead" style="color:rgba(255,255,255,.55);max-width:340px;margin:0">Every position scored on the same risk framework professionals use to manage billions.</p>
+      <p class="lead" style="color:rgba(255,255,255,.55);max-width:340px;margin:0">Cada posição avaliada com o mesmo framework de risco que profissionais usam para gerir bilhões.</p>
     </div>
     <div class="mb-grid reveal">
-      <div class="mb-cell"><div class="k">Volatility</div><div class="v">11.07%</div><div class="s">Annual std. dev.</div></div>
-      <div class="mb-cell"><div class="k">Sharpe</div><div class="v b">1.69</div><div class="s">Risk-adjusted</div></div>
-      <div class="mb-cell"><div class="k">Sortino</div><div class="v b">2.51</div><div class="s">Downside-adjusted</div></div>
-      <div class="mb-cell"><div class="k">Max Drawdown</div><div class="v r">−7.85%</div><div class="s">Worst peak-to-trough</div></div>
-      <div class="mb-cell"><div class="k">VaR 95%</div><div class="v r">−1.18%</div><div class="s">Daily value at risk</div></div>
-      <div class="mb-cell"><div class="k">CVaR 95%</div><div class="v r">−1.53%</div><div class="s">Expected tail loss</div></div>
+      <div class="mb-cell"><div class="k">Volatilidade</div><div class="v">11,07%</div><div class="s">Desvio padrão anual</div></div>
+      <div class="mb-cell"><div class="k">Sharpe</div><div class="v b">1,69</div><div class="s">Ajustado ao risco</div></div>
+      <div class="mb-cell"><div class="k">Sortino</div><div class="v b">2,51</div><div class="s">Ajustado à queda</div></div>
+      <div class="mb-cell"><div class="k">Max Drawdown</div><div class="v r">−7,85%</div><div class="s">Pior pico a fundo</div></div>
+      <div class="mb-cell"><div class="k">VaR 95%</div><div class="v r">−1,18%</div><div class="s">Valor em risco diário</div></div>
+      <div class="mb-cell"><div class="k">CVaR 95%</div><div class="v r">−1,53%</div><div class="s">Perda de cauda esperada</div></div>
     </div>
   </div>
 </section>
@@ -989,13 +902,13 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
 <!-- ============ FINAL CTA ============ -->
 <section class="final" id="start">
   <div class="wrap reveal">
-    <h2>Your portfolio, analyzed in minutes.</h2>
-    <p class="lead">Bring your holdings in with a single screenshot and see them the way institutions do.</p>
+    <h2>Sua carteira, analisada em minutos.</h2>
+    <p class="lead">Upload suas posições com um único print e veja-as como as instituições veem.</p>
     <div class="btns">
-      <a class="btn btn-primary btn-lg" href="https://app.vortaris.co/?signup=true&lang=en">Start free</a>
-      <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+      <a class="btn btn-primary btn-lg" href="#">Comece grátis</a>
+      <a class="btn btn-ghost btn-lg" href="#how">Veja como funciona</a>
     </div>
-    <div class="fineprint">No credit card. Just a first name and an email.</div>
+    <div class="fineprint">Sem cartão de crédito. Só um primeiro nome e um e-mail.</div>
   </div>
 </section>
 
@@ -1010,39 +923,40 @@ footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:56px 0
           <div class="logo-mark">V</div>
           <div class="brand-text"><span class="brand-name">VORTARIS</span><span class="brand-sub">INTELLIGENCE</span></div>
         </a>
-        <p>Global portfolio intelligence for investors who want to see their money the way institutions do — privately.</p>
+        <p>Inteligência global de portfólio para investidores que querem ver seu dinheiro como as instituições veem — com privacidade.</p>
         <address class="foot-addr"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>Fort Lauderdale, FL · USA</address>
       </div>
       <div class="foot-col">
-        <h4>Product</h4>
-        <a href="#how">How it works</a>
-        <a href="#quant">Quant engine</a>
-        <a href="#coverage">Coverage</a>
-        <a href="#start">Pricing</a>
+        <h4>Produto</h4>
+        <a href="#how">Como funciona</a>
+        <a href="#quant">Quant Engine</a>
+        <a href="#coverage">Cobertura</a>
+        <a href="#start">Preços</a>
       </div>
       <div class="foot-col">
-        <h4>Company</h4>
-        <a href="https://app.vortaris.co/?lang=en#/mission">About Vortaris</a>
-        <a href="#privacy">Privacy</a>
-        <a href="#">Security</a>
-        <a href="#">Contact</a>
+        <h4>Empresa</h4>
+        <a href="#">Sobre a Vortaris</a>
+        <a href="#privacy">Privacidade</a>
+        <a href="#">Segurança</a>
+        <a href="#">Contato</a>
       </div>
       <div class="foot-col">
-        <h4>Legal</h4>
-        <a href="#">Privacy policy</a>
-        <a href="#">Terms of service</a>
+        <h4>Jurídico</h4>
+        <a href="#">Política de privacidade</a>
+        <a href="#">Termos de uso</a>
         <a href="#">LGPD</a>
         <a href="#">GDPR</a>
       </div>
     </div>
     <div class="foot-bottom">
       <div class="foot-compliance">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>End-to-end encryption</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>Secure cloud (AWS)</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>LGPD &amp; GDPR compliant</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Criptografia ponta a ponta</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg>Nuvem segura (AWS)</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Conformidade LGPD e GDPR</span>
       </div>
-      <div class="foot-copy">© 2026 Vortaris Intelligence. Not investment advice.</div>
+      <div class="foot-copy">© 2026 Vortaris Intelligence. Não é recomendação de investimento.</div>
     </div>
+    <p class="foot-disclaimer">* O Vortaris é uma plataforma tecnológica de informação e educação financeira, voltada à consolidação de dados e à simulação matemática de cenários. Não realizamos intermediação de operações, oferta, recomendação ou análise de valores mobiliários, nem consultoria ou gestão de investimentos na forma da regulação da CVM. As análises, simulações e números exibidos têm caráter exclusivamente educacional e ilustrativo, não constituem promessa ou garantia de rentabilidade e não devem ser interpretados como aconselhamento financeiro. Rentabilidade passada não representa garantia de resultados futuros. Toda decisão de investimento é de responsabilidade exclusiva do usuário.</p>
   </div>
 </footer>
 
@@ -1096,28 +1010,21 @@ document.querySelectorAll('.lang-toggle button').forEach(b => {
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#0a0a0b",
   "dark": false,
-  "headline": "See your portfolio the way institutions do."
+  "headline": "Veja sua carteira como as instituições veem."
 }/*EDITMODE-END*/;
 
 const LIGHT = {
   "--bg":"#ffffff","--bg-soft":"#f6f6f7","--bg-soft-2":"#f0f0f2",
   "--ink":"#0a0a0b","--ink-2":"#52525b","--ink-3":"#9a9aa2",
   "--line":"#ececee","--line-2":"#e2e2e5","--card":"#ffffff",
-  "--on-ink":"#ffffff","--invert-bg":"#0a0a0b","--invert-fg":"#ffffff",
-  "--c-blue":"#3b82f6","--c-orange":"#f59e0b","--c-green":"#22c55e",
-  "--c-pink":"#ec4899","--c-purple":"#8b5cf6","--c-red":"#ef4444","--c-teal":"#14b8a6"
+  "--on-ink":"#ffffff","--invert-bg":"#0a0a0b","--invert-fg":"#ffffff"
 };
 const DARK = {
-  /* cool-toned, layered surfaces — page → section → card all step up */
-  "--bg":"#0a0c10","--bg-soft":"#11141b","--bg-soft-2":"#1b202a",
-  "--ink":"#f2f5f9","--ink-2":"#99a2b0","--ink-3":"#646d7c",
-  "--line":"#23272f","--line-2":"#31363f","--card":"#151921",
-  "--on-ink":"#0a0c10","--invert-bg":"#12161d","--invert-fg":"#f2f5f9",
-  /* semantics brightened a step so they read on dark without glowing */
-  "--c-blue":"#5e9bff","--c-orange":"#fbb33d","--c-green":"#36d39a",
-  "--c-pink":"#f472b6","--c-purple":"#a78bfa","--c-red":"#f87171","--c-teal":"#2dd4bf"
+  "--bg":"#0b0b0d","--bg-soft":"#141417","--bg-soft-2":"#1c1c20",
+  "--ink":"#f4f4f5","--ink-2":"#a1a1aa","--ink-3":"#8a8a94",
+  "--line":"#26262b","--line-2":"#34343a","--card":"#141417",
+  "--on-ink":"#0b0b0d","--invert-bg":"#17171b","--invert-fg":"#f4f4f5"
 };
-const DARK_ACCENT = "#5e8bff";
 
 function applyTheme(dark){
   const t = dark ? DARK : LIGHT;
@@ -1139,9 +1046,8 @@ function applyHeadline(text){
 }
 
 function TweaksApp(){
-  const [t, setTweak] = useTweaks(window.__FORCE_THEME === 'dark' ? Object.assign({}, TWEAK_DEFAULTS, {dark:true}) : TWEAK_DEFAULTS);
-  React.useEffect(() => { if (window.__FORCE_THEME === 'dark') setTweak('dark', true); }, []);
-  React.useEffect(() => { document.documentElement.style.setProperty('--accent', t.dark ? DARK_ACCENT : t.accent); }, [t.accent, t.dark]);
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  React.useEffect(() => { document.documentElement.style.setProperty('--accent', t.dark ? '#e4e4e7' : t.accent); }, [t.accent, t.dark]);
   React.useEffect(() => { applyTheme(t.dark); }, [t.dark]);
   React.useEffect(() => { applyHeadline(t.headline); }, [t.headline]);
   return (
