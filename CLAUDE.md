@@ -1,5 +1,10 @@
 # Project guidance for Claude — Vortaris marketing site
 
+## How to work on this project
+- No changes without showing exactly what will change and why
+- No claims of certainty unless verified
+- Say "I don't know" instead of guessing
+
 This is a **static HTML/CSS marketing site** maintained by a non-developer. Keep it
 fast and simple. Follow these rules unless explicitly told otherwise.
 
