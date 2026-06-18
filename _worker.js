@@ -7,17 +7,15 @@ export default {
     const isRoot = url.pathname === '/';
 
     if (isRoot) {
-      if (country === 'BR') {
-        // Brazilian visitors: mobile gets mobile page, desktop gets desktop page
+      const forceLang = url.searchParams.get('lang');
+      if (country === 'BR' && forceLang !== 'en') {
         const target = isMobile ? '/Vortaris%20Mobile.html' : '/landing-br.html';
         return Response.redirect(new URL(target, url.origin), 302);
-      } else {
-        // Everyone else: mobile gets EN mobile page, desktop gets EN desktop (index.html)
-        if (isMobile) {
-          return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
-        }
-        return env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request));
       }
+      if (isMobile) {
+        return Response.redirect(new URL('/Vortaris%20Mobile%20EN.html', url.origin), 302);
+      }
+      return env.ASSETS.fetch(new Request(new URL('/index.html', url.origin), request));
     }
 
     // Old archived URLs → redirect to correct active pages
